@@ -249,7 +249,9 @@ const Note score[] PROGMEM = {
 };
 
 int t[] = { 0, 0 };
+#ifdef USE_EFX
 int tp[] = { 0, 0 };
+#endif
 
 #ifdef USE_EFX
 boolean doSound(byte efx, int r) {
@@ -314,7 +316,9 @@ void loop() {
   while(++i) {
     r = analogRead(A3) / 4;
     r = r < 16 ? 16 : r;
+#ifdef USE_EFX
     tp[0] = t[0]; tp[1] = t[1];
+#endif
     t[0] = pgm_read_word(&score[i].voice1);
     if(t[0] < 0) {
       break;
