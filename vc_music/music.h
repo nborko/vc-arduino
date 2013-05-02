@@ -1,123 +1,238 @@
 #include "pitches.h"
 
 const Note score[] PROGMEM = {
-  // This is without properly transposing (GB is up 4 semitones so it starts on Em, not Cm)
   // Arp Chords for first part
-  // 1
+  // Pattern 1:
+  // 1a
   { 0 ,	 NOTE_E4 , NOTE_B4  },
   { 0 ,	 NOTE_E4 , NOTE_B4  },
+  { 0 ,	 NOTE_E4 , NOTE_B4  },
+  { 0 ,	 NOTE_E4 , NOTE_B4  },
+  { 0 ,	 NOTE_E4 , NOTE_B4  },
+  { 0 ,	 NOTE_E4 , NOTE_B4  },
+  { 0 ,	 NOTE_E4 , NOTE_B4  },
+  { 0 ,	 NOTE_E4 , NOTE_B4  },
+  // 1b
+  { 0 ,	 NOTE_B3 , NOTE_E4  },
+  { 0 ,	 NOTE_B3 , NOTE_E4  },
+  { 0 ,	 NOTE_B3 , NOTE_E4  },
+  { 0 ,	 NOTE_B3 , NOTE_E4  },
+  { 0 ,	 NOTE_B3 , NOTE_E4  },
+  { 0 ,	 NOTE_B3 , NOTE_E4  },
+  { 0 ,	 NOTE_B3 , NOTE_E4  },
+  { 0 ,	 NOTE_B3 , NOTE_E4  },
+  // 1c
   { 0 ,	 NOTE_G4 , NOTE_D4  },
+  { 0 ,	 NOTE_G4 , NOTE_D4  },
+  { 0 ,	 NOTE_G4 , NOTE_D4  },
+  { 0 ,	 NOTE_G4 , NOTE_D4  },
+  { 0 ,	 NOTE_G4 , NOTE_D4  },
+  { 0 ,	 NOTE_G4 , NOTE_D4  },
+  { 0 ,	 NOTE_G4 , NOTE_D4  },
+  { 0 ,	 NOTE_G4 , NOTE_D4  },
+  // 1d
   { 0 ,	 NOTE_A4 , NOTE_E4  },
-  // 2
+  { 0 ,	 NOTE_A4 , NOTE_E4  },
+  { 0 ,	 NOTE_A4 , NOTE_E4  },
+  { 0 ,	 NOTE_A4 , NOTE_E4  },
+  { 0 ,	 NOTE_A4 , NOTE_E4  },
+  { 0 ,	 NOTE_A4 , NOTE_E4  },
+  { 0 ,	 NOTE_A4 , NOTE_E4  },
+  { 0 ,	 NOTE_A4 , NOTE_E4  },
+
+  // Pattern 1:
+  // 1a
+  { 0 ,	 NOTE_E4 , NOTE_B4  },
+  { 0 ,	 NOTE_E4 , NOTE_B4  },
+  { 0 ,	 NOTE_E4 , NOTE_B4  },
+  { 0 ,	 NOTE_E4 , NOTE_B4  },
+  { 0 ,	 NOTE_E4 , NOTE_B4  },
+  { 0 ,	 NOTE_E4 , NOTE_B4  },
+  { 0 ,	 NOTE_E4 , NOTE_B4  },
+  { 0 ,	 NOTE_E4 , NOTE_B4  },
+  // 1b
   { 0 ,	 NOTE_B3 , NOTE_E4  },
   { 0 ,	 NOTE_B3 , NOTE_E4  },
+  { 0 ,	 NOTE_B3 , NOTE_E4  },
+  { 0 ,	 NOTE_B3 , NOTE_E4  },
+  { 0 ,	 NOTE_B3 , NOTE_E4  },
+  { 0 ,	 NOTE_B3 , NOTE_E4  },
+  { 0 ,	 NOTE_B3 , NOTE_E4  },
+  { 0 ,	 NOTE_B3 , NOTE_E4  },
+  // 1c
   { 0 ,	 NOTE_G4 , NOTE_D4  },
+  { 0 ,	 NOTE_G4 , NOTE_D4  },
+  { 0 ,	 NOTE_G4 , NOTE_D4  },
+  { 0 ,	 NOTE_G4 , NOTE_D4  },
+  { 0 ,	 NOTE_G4 , NOTE_D4  },
+  { 0 ,	 NOTE_G4 , NOTE_D4  },
+  { 0 ,	 NOTE_G4 , NOTE_D4  },
+  { 0 ,	 NOTE_G4 , NOTE_D4  },
+  // 1d
+  { 0 ,	 NOTE_A4 , NOTE_E4  },
+  { 0 ,	 NOTE_A4 , NOTE_E4  },
+  { 0 ,	 NOTE_A4 , NOTE_E4  },
+  { 0 ,	 NOTE_A4 , NOTE_E4  },
+  { 0 ,	 NOTE_A4 , NOTE_E4  },
+  { 0 ,	 NOTE_A4 , NOTE_E4  },
+  { 0 ,	 NOTE_A4 , NOTE_E4  },
   { 0 ,	 NOTE_A4 , NOTE_E4  },
 
   // Slow Melody with bass
-  // 1a
-  { 0 ,	 NOTE_B5  , NOTE_E3  },
-  { 0 ,	 NOTE_G5  , NOTE_E3  },
-  { 0 ,	 NOTE_A5  , NOTE_E3  },
-  { 0 ,	 NOTE_E5  , NOTE_E3  },
-  { 0 ,	 NOTE_D5  , NOTE_E3  },
-  // 1b
-  { 0 ,	 NOTE_B5  , NOTE_G3  },
-  { 0 ,	 NOTE_G5  , NOTE_G3  },
-  { 0 ,	 NOTE_A5  , NOTE_A3  },
-  { 0 ,	 NOTE_E5  , NOTE_A3  },
-  { 0 ,	 NOTE_D5  , NOTE_A3  },
-  // 1c
-  { 0 ,	 NOTE_B5  , NOTE_E3  },
-  { 0 ,	 NOTE_G5  , NOTE_E3  },
-  { 0 ,	 NOTE_A5  , NOTE_E3  },
-  { 0 ,	 NOTE_E5  , NOTE_E3  },
-  { 0 ,	 NOTE_D5  , NOTE_E3  },
-  // 1d
-  { 0 ,	 NOTE_B5  , NOTE_G3  },
-  { 0 ,	 NOTE_G5  , NOTE_G3  },
-  { 0 ,	 NOTE_A5  , NOTE_A3  },
-  { 0 ,	 NOTE_E5  , NOTE_A3  },
-  { 0 ,	 NOTE_D5  , NOTE_A3  },
+  // Pattern 2
   // 2a
   { 0 ,	 NOTE_B5  , NOTE_E3  },
+  { 0 ,	 NOTE_B5  , NOTE_E3  },
   { 0 ,	 NOTE_G5  , NOTE_E3  },
+  { 0 ,	 NOTE_G5  , NOTE_E3  },
+  { 0 ,	 NOTE_A5  , NOTE_E3  },  
   { 0 ,	 NOTE_A5  , NOTE_E3  },
   { 0 ,	 NOTE_E5  , NOTE_E3  },
   { 0 ,	 NOTE_D5  , NOTE_E3  },
   // 2b
   { 0 ,	 NOTE_B5  , NOTE_G3  },
-  { 0 ,	 NOTE_G5  , NOTE_G3  },
-  { 0 ,	 NOTE_A5  , NOTE_A3  },
-  { 0 ,	 NOTE_E5  , NOTE_A3  },
-  { 0 ,	 NOTE_D5  , NOTE_A3  },
-  // 2c
-  { 0 ,	 NOTE_B5  , NOTE_E3  },
-  { 0 ,	 NOTE_G5  , NOTE_E3  },
-  { 0 ,	 NOTE_A5  , NOTE_E3  },
-  { 0 ,	 NOTE_E5  , NOTE_E3  },
-  { 0 ,	 NOTE_D5  , NOTE_E3  },
-  // 2d
   { 0 ,	 NOTE_B5  , NOTE_G3  },
   { 0 ,	 NOTE_G5  , NOTE_G3  },
+  { 0 ,	 NOTE_G5  , NOTE_G3  },
+  { 0 ,	 NOTE_A5  , NOTE_A3  },
+  { 0 ,	 NOTE_A5  , NOTE_A3  },
+  { 0 ,	 NOTE_E5  , NOTE_A3  },
+  { 0 ,	 NOTE_D5  , NOTE_A3  },
+  // 2a
+  { 0 ,	 NOTE_B5  , NOTE_E3  },
+  { 0 ,	 NOTE_B5  , NOTE_E3  },
+  { 0 ,	 NOTE_G5  , NOTE_E3  },
+  { 0 ,	 NOTE_G5  , NOTE_E3  },
+  { 0 ,	 NOTE_A5  , NOTE_E3  },
+  { 0 ,	 NOTE_A5  , NOTE_E3  },
+  { 0 ,	 NOTE_E5  , NOTE_E3  },
+  { 0 ,	 NOTE_D5  , NOTE_E3  },
+  // 2b
+  { 0 ,	 NOTE_B5  , NOTE_G3  },
+  { 0 ,	 NOTE_B5  , NOTE_G3  },
+  { 0 ,	 NOTE_G5  , NOTE_G3  },
+  { 0 ,	 NOTE_G5  , NOTE_G3  },
+  { 0 ,	 NOTE_A5  , NOTE_A3  },
+  { 0 ,	 NOTE_A5  , NOTE_A3  },
+  { 0 ,	 NOTE_E5  , NOTE_A3  },
+  { 0 ,	 NOTE_D5  , NOTE_A3  },
+  // 2a
+  { 0 ,	 NOTE_B5  , NOTE_E3  },
+  { 0 ,	 NOTE_B5  , NOTE_E3  },
+  { 0 ,	 NOTE_G5  , NOTE_E3  },
+  { 0 ,	 NOTE_G5  , NOTE_E3  },
+  { 0 ,	 NOTE_A5  , NOTE_E3  },  
+  { 0 ,	 NOTE_A5  , NOTE_E3  },
+  { 0 ,	 NOTE_E5  , NOTE_E3  },
+  { 0 ,	 NOTE_D5  , NOTE_E3  },
+  // 2b
+  { 0 ,	 NOTE_B5  , NOTE_G3  },
+  { 0 ,	 NOTE_B5  , NOTE_G3  },
+  { 0 ,	 NOTE_G5  , NOTE_G3  },
+  { 0 ,	 NOTE_G5  , NOTE_G3  },
+  { 0 ,	 NOTE_A5  , NOTE_A3  },
+  { 0 ,	 NOTE_A5  , NOTE_A3  },
+  { 0 ,	 NOTE_E5  , NOTE_A3  },
+  { 0 ,	 NOTE_D5  , NOTE_A3  },
+  // 2a
+  { 0 ,	 NOTE_B5  , NOTE_E3  },
+  { 0 ,	 NOTE_B5  , NOTE_E3  },
+  { 0 ,	 NOTE_G5  , NOTE_E3  },
+  { 0 ,	 NOTE_G5  , NOTE_E3  },
+  { 0 ,	 NOTE_A5  , NOTE_E3  },
+  { 0 ,	 NOTE_A5  , NOTE_E3  },
+  { 0 ,	 NOTE_E5  , NOTE_E3  },
+  { 0 ,	 NOTE_D5  , NOTE_E3  },
+  // 2b
+  { 0 ,	 NOTE_B5  , NOTE_G3  },
+  { 0 ,	 NOTE_B5  , NOTE_G3  },
+  { 0 ,	 NOTE_G5  , NOTE_G3  },
+  { 0 ,	 NOTE_G5  , NOTE_G3  },
+  { 0 ,	 NOTE_A5  , NOTE_A3  },
   { 0 ,	 NOTE_A5  , NOTE_A3  },
   { 0 ,	 NOTE_E5  , NOTE_A3  },
   { 0 ,	 NOTE_D5  , NOTE_A3  },
 
-  //Faster Melody with Bass
-  //1a
+  // Faster Melody with Bass
+  // Pattern 3:
+  // 3a
+  { 0 ,	 NOTE_B5  , NOTE_E3  },
   { 0 ,	 NOTE_B5  , NOTE_E3  },
   { 0 ,	 NOTE_D5  , NOTE_E4  },  
+  { 0 ,	 NOTE_D5  , NOTE_E4  },
+  { 0 ,	 NOTE_G5  , NOTE_E3  },
   { 0 ,	 NOTE_G5  , NOTE_E3  },
   { 0 ,	 NOTE_D5  , NOTE_E4  },
-  //1b
+  { 0 ,	 NOTE_D5  , NOTE_E4  },
+  // 3b
   { 0 ,	 NOTE_A5  , NOTE_E3  },
+  { 0 ,	 NOTE_A5  , NOTE_E3  },
+  { 0 ,	 NOTE_D5  , NOTE_E4  },
   { 0 ,	 NOTE_D5  , NOTE_E4  },
   { 0 ,	 NOTE_E5  , NOTE_E3  },
   { 0 ,	 NOTE_D5  , NOTE_E3  },
   { 0 ,	 NOTE_B4  , NOTE_E3  },
   { 0 ,	 NOTE_D5  , NOTE_E3  },
-  //1c (same as 1a)
+  // 3a
+  { 0 ,	 NOTE_B5  , NOTE_E3  },
   { 0 ,	 NOTE_B5  , NOTE_E3  },
   { 0 ,	 NOTE_D5  , NOTE_E4  },  
+  { 0 ,	 NOTE_D5  , NOTE_E4  },
+  { 0 ,	 NOTE_G5  , NOTE_E3  },
   { 0 ,	 NOTE_G5  , NOTE_E3  },
   { 0 ,	 NOTE_D5  , NOTE_E4  },
-  //1d
+  { 0 ,	 NOTE_D5  , NOTE_E4  },
+  // 3c
   { 0 ,	 NOTE_A5  , NOTE_E3  },
+  { 0 ,	 NOTE_A5  , NOTE_E3  },
+  { 0 ,	 NOTE_D5  , NOTE_E4  },
   { 0 ,	 NOTE_D5  , NOTE_E4  },
   { 0 ,	 NOTE_E5  , NOTE_E3  },
   { 0 ,	 NOTE_D5  , NOTE_E3  },
-  { 0 ,	 NOTE_G5  , NOTE_E3  },
-  { 0 ,	 NOTE_FS5 , NOTE_E3  },
-  //2a
+  { EFX_GLISS | EFX_VOICE1 | 1 ,	 NOTE_G5  , NOTE_E3  },
+  { 0 , NOTE_FS5 , NOTE_E3  },
+  
+  // Pattern 3:
+    // 3a
+  { 0 ,	 NOTE_B5  , NOTE_E3  },
   { 0 ,	 NOTE_B5  , NOTE_E3  },
   { 0 ,	 NOTE_D5  , NOTE_E4  },  
+  { 0 ,	 NOTE_D5  , NOTE_E4  },
+  { 0 ,	 NOTE_G5  , NOTE_E3  },
   { 0 ,	 NOTE_G5  , NOTE_E3  },
   { 0 ,	 NOTE_D5  , NOTE_E4  },
-  //2b
+  { 0 ,	 NOTE_D5  , NOTE_E4  },
+  // 3b
   { 0 ,	 NOTE_A5  , NOTE_E3  },
+  { 0 ,	 NOTE_A5  , NOTE_E3  },
+  { 0 ,	 NOTE_D5  , NOTE_E4  },
   { 0 ,	 NOTE_D5  , NOTE_E4  },
   { 0 ,	 NOTE_E5  , NOTE_E3  },
   { 0 ,	 NOTE_D5  , NOTE_E3  },
   { 0 ,	 NOTE_B4  , NOTE_E3  },
   { 0 ,	 NOTE_D5  , NOTE_E3  },
-  //2c (same as 2a)
+  // 3a
+  { 0 ,	 NOTE_B5  , NOTE_E3  },
   { 0 ,	 NOTE_B5  , NOTE_E3  },
   { 0 ,	 NOTE_D5  , NOTE_E4  },  
+  { 0 ,	 NOTE_D5  , NOTE_E4  },
+  { 0 ,	 NOTE_G5  , NOTE_E3  },
   { 0 ,	 NOTE_G5  , NOTE_E3  },
   { 0 ,	 NOTE_D5  , NOTE_E4  },
-  //2d
+  { 0 ,	 NOTE_D5  , NOTE_E4  },
+  // 3c
   { 0 ,	 NOTE_A5  , NOTE_E3  },
+  { 0 ,	 NOTE_A5  , NOTE_E3  },
+  { 0 ,	 NOTE_D5  , NOTE_E4  },
   { 0 ,	 NOTE_D5  , NOTE_E4  },
   { 0 ,	 NOTE_E5  , NOTE_E3  },
   { 0 ,	 NOTE_D5  , NOTE_E3  },
-  { 0 ,	 NOTE_G5  , NOTE_E3  },
-  { 0 ,	 NOTE_FS5 , NOTE_E3  },
-
-
+  { EFX_GLISS | EFX_VOICE1 | 1 ,	 NOTE_G5  , NOTE_E3  },
+  { 0 , NOTE_FS5 , NOTE_E3  },
   
   // Fast Melody No Bass
-  //1a
+  // Pattern 4:
+  // 4a
   { 0 ,	 NOTE_B5  , 0        },
   { 0 ,	 NOTE_B4  , 0        },
   { 0 ,	 NOTE_D5  , 0        },  
@@ -126,7 +241,7 @@ const Note score[] PROGMEM = {
   { 0 ,	 NOTE_G4  , 0        },
   { 0 ,	 NOTE_D5  , 0        },
   { 0 ,	 NOTE_D4  , 0        },
-  //1b
+  // 4b
   { 0 ,	 NOTE_A5  , 0        },
   { 0 ,	 NOTE_A4  , 0        },
   { 0 ,	 NOTE_D4  , 0        },
@@ -135,7 +250,7 @@ const Note score[] PROGMEM = {
   { 0 ,	 NOTE_D5  , 0        },
   { 0 ,	 NOTE_B4  , 0        },
   { 0 ,	 NOTE_D5  , 0        },
-  //1c (same as 1a)
+  // 4a
   { 0 ,	 NOTE_B5  , 0        },
   { 0 ,	 NOTE_B4  , 0        },
   { 0 ,	 NOTE_D5  , 0        },  
@@ -144,16 +259,19 @@ const Note score[] PROGMEM = {
   { 0 ,	 NOTE_G4  , 0        },
   { 0 ,	 NOTE_D5  , 0        },
   { 0 ,	 NOTE_D4  , 0        },
-  //1d
+  // 4c
   { 0 ,	 NOTE_A5  , 0        },
   { 0 ,	 NOTE_A4  , 0        },
   { 0 ,	 NOTE_D4  , 0        },
   { 0 ,	 NOTE_D3  , 0        },
   { 0 ,	 NOTE_E5  , 0        },
   { 0 ,	 NOTE_D5  , 0        },
-  { 0 ,	 NOTE_G5  , 0        },
+  { EFX_GLISS | EFX_VOICE1 | 1 , NOTE_FS5 , 0  },
   { 0 ,	 NOTE_FS5 , 0        },
-  //2a
+ 
+  // Fast Melody No Bass
+  // Pattern 4:
+  // 4a
   { 0 ,	 NOTE_B5  , 0        },
   { 0 ,	 NOTE_B4  , 0        },
   { 0 ,	 NOTE_D5  , 0        },  
@@ -162,7 +280,7 @@ const Note score[] PROGMEM = {
   { 0 ,	 NOTE_G4  , 0        },
   { 0 ,	 NOTE_D5  , 0        },
   { 0 ,	 NOTE_D4  , 0        },
-  //2b  
+  // 4b
   { 0 ,	 NOTE_A5  , 0        },
   { 0 ,	 NOTE_A4  , 0        },
   { 0 ,	 NOTE_D4  , 0        },
@@ -171,7 +289,7 @@ const Note score[] PROGMEM = {
   { 0 ,	 NOTE_D5  , 0        },
   { 0 ,	 NOTE_B4  , 0        },
   { 0 ,	 NOTE_D5  , 0        },
-  //2c (same as 2a)
+  // 4a
   { 0 ,	 NOTE_B5  , 0        },
   { 0 ,	 NOTE_B4  , 0        },
   { 0 ,	 NOTE_D5  , 0        },  
@@ -180,153 +298,16 @@ const Note score[] PROGMEM = {
   { 0 ,	 NOTE_G4  , 0        },
   { 0 ,	 NOTE_D5  , 0        },
   { 0 ,	 NOTE_D4  , 0        },
-  //2d
+  // 4c
   { 0 ,	 NOTE_A5  , 0        },
   { 0 ,	 NOTE_A4  , 0        },
   { 0 ,	 NOTE_D4  , 0        },
   { 0 ,	 NOTE_D3  , 0        },
   { 0 ,	 NOTE_E5  , 0        },
   { 0 ,	 NOTE_D5  , 0        },
-  { 0 ,	 NOTE_G5  , 0        },
+  { EFX_GLISS | EFX_VOICE1 | 1 , NOTE_FS5 , 0  },
   { 0 ,	 NOTE_FS5 , 0        },
-
-  // Arp Melody No Bass
-  //1a
-  { 0 ,	 NOTE_B5  , 0      },
-  { 0 ,	 NOTE_B3  , 0      },
-  { 0 ,	 NOTE_B4  , 0      },
-  { 0 ,	 NOTE_B3  , 0      },
-  { 0 ,	 NOTE_D5  , 0      },  
-  { 0 ,	 NOTE_D3  , 0      },
-  { 0 ,	 NOTE_D4  , 0      },  
-  { 0 ,	 NOTE_D3  , 0      },
-  { 0 ,	 NOTE_G5  , 0      },
-  { 0 ,	 NOTE_G3  , 0      },
-  { 0 ,	 NOTE_G4  , 0      },
-  { 0 ,	 NOTE_G3  , 0      },
-  { 0 ,	 NOTE_D5  , 0      },
-  { 0 ,	 NOTE_D3  , 0      },
-  { 0 ,	 NOTE_D4  , 0      },
-  { 0 ,	 NOTE_D3  , 0      },
-  //1b
-  { 0 ,	 NOTE_A5  , 0      },
-  { 0 ,	 NOTE_A3  , 0      },
-  { 0 ,	 NOTE_A4  , 0      },
-  { 0 ,	 NOTE_A3  , 0      },
-  { 0 ,	 NOTE_D4  , 0      },
-  { 0 ,	 NOTE_D3  , 0      },
-  { 0 ,	 NOTE_D4  , 0      },
-  { 0 ,	 NOTE_D2  , 0      },
-  { 0 ,	 NOTE_E5  , 0      },
-  { 0 ,	 NOTE_E4  , 0      },
-  { 0 ,	 NOTE_D5  , 0      },
-  { 0 ,	 NOTE_D4  , 0      },
-  { 0 ,	 NOTE_B4  , 0      },
-  { 0 ,	 NOTE_B3  , 0      },
-  { 0 ,	 NOTE_D5  , 0      },
-  { 0 ,	 NOTE_D4  , 0      },
-  //1c (same as 1a)
-  { 0 ,	 NOTE_B5  , 0      },
-  { 0 ,	 NOTE_B3  , 0      },
-  { 0 ,	 NOTE_B4  , 0      },
-  { 0 ,	 NOTE_B3  , 0      },
-  { 0 ,	 NOTE_D5  , 0      },  
-  { 0 ,	 NOTE_D3  , 0      },
-  { 0 ,	 NOTE_D4  , 0      },  
-  { 0 ,	 NOTE_D3  , 0      },
-  { 0 ,	 NOTE_G5  , 0      },
-  { 0 ,	 NOTE_G3  , 0      },
-  { 0 ,	 NOTE_G4  , 0      },
-  { 0 ,	 NOTE_G3  , 0      },
-  { 0 ,	 NOTE_D5  , 0      },
-  { 0 ,	 NOTE_D3  , 0      },
-  { 0 ,	 NOTE_D4  , 0      },
-  { 0 ,	 NOTE_D3  , 0      },
-  //1d
-  { 0 ,	 NOTE_A5  , 0      },
-  { 0 ,	 NOTE_A3  , 0      },
-  { 0 ,	 NOTE_A4  , 0      },
-  { 0 ,	 NOTE_A3  , 0      },
-  { 0 ,	 NOTE_D4  , 0      },
-  { 0 ,	 NOTE_D5  , 0      },
-  { 0 ,	 NOTE_D3  , 0      },
-  { 0 ,	 NOTE_D2  , 0      },
-  { 0 ,	 NOTE_E5  , 0      },
-  { 0 ,	 NOTE_E3  , 0      },
-  { 0 ,	 NOTE_D5  , 0      },
-  { 0 ,	 NOTE_D3  , 0      },
-  { 0 ,	 NOTE_G5  , 0      },
-  { 0 ,	 NOTE_G3  , 0      },
-  { 0 ,	 NOTE_FS5 , 0      },
-  { 0 ,	 NOTE_FS3 , 0      },
-  //2a
-  { 0 ,	 NOTE_B5  , 0      },
-  { 0 ,	 NOTE_B3  , 0      },
-  { 0 ,	 NOTE_B4  , 0      },
-  { 0 ,	 NOTE_B3  , 0      },
-  { 0 ,	 NOTE_D5  , 0      },  
-  { 0 ,	 NOTE_D3  , 0      },
-  { 0 ,	 NOTE_D4  , 0      },  
-  { 0 ,	 NOTE_D3  , 0      },
-  { 0 ,	 NOTE_G5  , 0      },
-  { 0 ,	 NOTE_G3  , 0      },
-  { 0 ,	 NOTE_G4  , 0      },
-  { 0 ,	 NOTE_G3  , 0      },
-  { 0 ,	 NOTE_D5  , 0      },
-  { 0 ,	 NOTE_D3  , 0      },
-  { 0 ,	 NOTE_D4  , 0      },
-  { 0 ,	 NOTE_D3  , 0      },
-  //2b
-  { 0 ,	 NOTE_A5  , 0      },
-  { 0 ,	 NOTE_A3  , 0      },
-  { 0 ,	 NOTE_A4  , 0      },
-  { 0 ,	 NOTE_A3  , 0      },
-  { 0 ,	 NOTE_D4  , 0      },
-  { 0 ,	 NOTE_D3  , 0      },
-  { 0 ,	 NOTE_D4  , 0      },
-  { 0 ,	 NOTE_D2  , 0      },
-  { 0 ,	 NOTE_E5  , 0      },
-  { 0 ,	 NOTE_E4  , 0      },
-  { 0 ,	 NOTE_D5  , 0      },
-  { 0 ,	 NOTE_D4  , 0      },
-  { 0 ,	 NOTE_B4  , 0      },
-  { 0 ,	 NOTE_B3  , 0      },
-  { 0 ,	 NOTE_D5  , 0      },
-  { 0 ,	 NOTE_D4  , 0      },
-  //2c (same as 2a)
-  { 0 ,	 NOTE_B5  , 0      },
-  { 0 ,	 NOTE_B3  , 0      },
-  { 0 ,	 NOTE_B4  , 0      },
-  { 0 ,	 NOTE_B3  , 0      },
-  { 0 ,	 NOTE_D5  , 0      },  
-  { 0 ,	 NOTE_D3  , 0      },
-  { 0 ,	 NOTE_D4  , 0      },  
-  { 0 ,	 NOTE_D3  , 0      },
-  { 0 ,	 NOTE_G5  , 0      },
-  { 0 ,	 NOTE_G3  , 0      },
-  { 0 ,	 NOTE_G4  , 0      },
-  { 0 ,	 NOTE_G3  , 0      },
-  { 0 ,	 NOTE_D5  , 0      },
-  { 0 ,	 NOTE_D3  , 0      },
-  { 0 ,	 NOTE_D4  , 0      },
-  { 0 ,	 NOTE_D3  , 0      },
-  //2d
-  { 0 ,	 NOTE_A5  , 0      },
-  { 0 ,	 NOTE_A3  , 0      },
-  { 0 ,	 NOTE_A4  , 0      },
-  { 0 ,	 NOTE_A3  , 0      },
-  { 0 ,	 NOTE_D4  , 0      },
-  { 0 ,	 NOTE_D5  , 0      },
-  { 0 ,	 NOTE_D3  , 0      },
-  { 0 ,	 NOTE_D2  , 0      },
-  { 0 ,	 NOTE_E5  , 0      },
-  { 0 ,	 NOTE_E3  , 0      },
-  { 0 ,	 NOTE_D5  , 0      },
-  { 0 ,	 NOTE_D3  , 0      },
-  { 0 ,	 NOTE_G5  , 0      },
-  { 0 ,	 NOTE_G3  , 0      },
-  { 0 ,	 NOTE_FS5 , 0      },
-  { 0 ,	 NOTE_FS3 , 0      },
+ 
   // Loop 
   { 0 ,	 -1       ,-1  }
 };

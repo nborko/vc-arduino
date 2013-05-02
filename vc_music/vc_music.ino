@@ -14,12 +14,13 @@
 // Arduino:
 // 1. Get FlexiTimer2 from http://playground.arduino.cc/Main/FlexiTimer2
 // 2. Uncomment the next line
-//#include <FlexiTimer2.h>
+#include <FlexiTimer2.h>
 
 #define USE_EFX
 
 // affects BPM
-#define DELAY         1.2
+// #define DELAY         1.2
+#define DELAY          8
 
 #ifdef USE_EFX
 #define PERIOD        21800
