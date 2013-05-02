@@ -9,12 +9,17 @@
 // Pins 6,7 -> piezo speaker
 
 #include <avr/pgmspace.h>
-#include <avr/delay.h>
+#include <util/delay.h>
+
+// Arduino:
+// 1. Get FlexiTimer2 from http://playground.arduino.cc/Main/FlexiTimer2
+// 2. Uncomment the next line
+//#include <FlexiTimer2.h>
 
 #define USE_EFX
 
 // affects BPM
-#define DELAY         0.625
+#define DELAY         1.2
 
 #ifdef USE_EFX
 #define PERIOD        21800
@@ -32,7 +37,6 @@ typedef struct Note {
   byte effect;
   int voice1;
   int voice2;
-  byte duration;
 } Note;
 
 #include "music.h"
@@ -45,11 +49,7 @@ volatile byte effect = 0;
 int tp[] = { 0, 0 };
 #endif
 
-#ifdef USE_EFX
-boolean doSound(byte efx, int r) {
-#else
-boolean doSound(int r) {
-#endif
+void doSound() {
   static byte voice = 0;
   static int voice_period = 0;
   static int pulse = 0;
@@ -62,7 +62,7 @@ boolean doSound(int r) {
     voice = !voice;
   }
 #ifdef USE_EFX
-  boolean g = (efx & EFX_GLISS) && (efx & (voice << 5) == voice ) && (tp[voice] != t[voice]);
+  boolean g = (effect & EFX_GLISS) && ((effect & (voice << 5)) == voice) && (tp[voice] != t[voice]);
   f =  g ? tp[voice] : t[voice];
 #else
   f = t[voice];
@@ -79,7 +79,7 @@ boolean doSound(int r) {
   voice_period = (voice_period + 1 < PERIOD / f) ? voice_period + 1 : 0;
   if (voice_period == 0) {
 #ifdef USE_EFX
-    if(g) tp[voice] = tp[voice] != t[voice] ? (tp[voice] < t[voice] ? min(t[voice], tp[voice] + (efx & B00111111)) : max(t[voice], tp[voice] - (efx & B00111111))) : t[voice];
+    if(g) tp[voice] = tp[voice] != t[voice] ? (tp[voice] < t[voice] ? min(t[voice], tp[voice] + (effect & B00111111)) : max(t[voice], tp[voice] - (effect & B00111111))) : t[voice];
 #endif
     if (++pulse > f / r) {
       pulse = 0;
@@ -88,6 +88,7 @@ boolean doSound(int r) {
   }
 }
 
+#ifdef __AVR_ATtiny85__
 void setup_timer() {
     TCCR1 = 0;                  //stop the timer
     TCNT1 = 0;                  //zero the timer
@@ -99,12 +100,14 @@ void setup_timer() {
 }
 
 ISR(TIMER1_COMPB_vect) {
-#ifdef USE_EFX
-      doSound(effect, r);
-#else
-      doSound(r);
-#endif
+  doSound();
 }
+#else
+void setup_timer() {
+  FlexiTimer2::set(1, 1/(float)PERIOD, doSound);
+  FlexiTimer2::start();
+}
+#endif
 
 void setup() {
   DDRB |= B00000110;
