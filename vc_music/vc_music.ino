@@ -9,20 +9,22 @@
 // Pins 6,7 -> piezo speaker
 
 #include <avr/pgmspace.h>
+#include <avr/delay.h>
 
-#include "pitches.h"
+#define USE_EFX
 
-#define PERIOD        20000
-#define BEAT          61440
-#define DELAY_MICROS  16
-
-//#define USE_EFX
+// affects BPM
+#define DELAY         0.625
 
 #ifdef USE_EFX
-#define EFX_GLISS B01000000
+#define PERIOD        21800
+#define EFX_GLISS     B01000000
 #define EFX_VOICE1    B00000000
 #define EFX_VOICE2    B00100000
+#else
+#define PERIOD        22500
 #endif
+
 // uncomment for LED diagnostic
 //#define DIAG 0
 
@@ -33,223 +35,13 @@ typedef struct Note {
   byte duration;
 } Note;
 
-const Note score[] PROGMEM = {
-  { 0,       0, NOTE_E2, 16 },
-  { 0, NOTE_E4, NOTE_E2, 16 },
-  { 0, NOTE_A4, NOTE_A3, 16 },
-  { 0, NOTE_C5, NOTE_A3, 16 },
-  { 0, NOTE_B4, NOTE_A3, 16 },
-  { 0, NOTE_E4, NOTE_A3, 16 },
-  { 0, NOTE_B4, NOTE_GS3, 16 },
-  { 0, NOTE_D5, NOTE_GS3, 16 },
-  { 0, NOTE_C5, NOTE_A3, 16 },
-  { 0, NOTE_C5, NOTE_E3, 16 },
-  { 0, NOTE_E5, NOTE_A3, 16 },
-  { 0, NOTE_E5, NOTE_C4, 16 },
-  { 0, NOTE_GS4, NOTE_B3, 16 },
-  { 0, NOTE_GS4, NOTE_E3, 16 },
-  { 0, NOTE_E5, NOTE_B3, 16 },
-  { 0, NOTE_E5, NOTE_D4, 16 },
-  { 0, NOTE_A4, NOTE_C4, 16 },
-  { 0, NOTE_E4, NOTE_C4, 16 },
-  { 0, NOTE_A4, NOTE_A3, 16 },
-  { 0, NOTE_C5, NOTE_A3, 16 },
-  { 0, NOTE_B4, NOTE_GS3, 16 },
-  { 0, NOTE_E4, NOTE_GS3, 16 },
-  { 0, NOTE_B4, NOTE_E3, 16 },
-  { 0, NOTE_D5, NOTE_E3, 16 },
-  { 0, NOTE_C5, NOTE_A3, 16 },
-  { 0, NOTE_C5, NOTE_E3, 16 },
-  { 0, NOTE_A4, NOTE_A3, 16 },
-  { 0, NOTE_A4, NOTE_C4, 16 },
-  { 0,       0, NOTE_B3, 16 },
-  { 0,       0, NOTE_E3, 16 },
-  { 0,       0, NOTE_B3, 16 },
-  { 0,       0, NOTE_D4, 16 },
-  { 0,       0, NOTE_C4, 16 },
-  { 0, NOTE_E5, NOTE_C4, 16 },
-  { 0, NOTE_C5, NOTE_A3, 16 },
-  { 0, NOTE_E5, NOTE_A3, 16 },
-  { 0, NOTE_A4, NOTE_C4, 16 },
-  { 0, NOTE_C5, NOTE_C4, 16 },
-  { 0, NOTE_E4, NOTE_A3, 16 },
-  { 0, NOTE_G4, NOTE_A3, 16 },
-  { 0, NOTE_F4, NOTE_D4, 16 },
-  { 0, NOTE_F4, NOTE_A3, 16 },
-  { 0, NOTE_A4, NOTE_F3, 16 },
-  { 0, NOTE_A4, NOTE_A3, 16 },
-  { 0, NOTE_D5, NOTE_D3, 16 },
-  { 0, NOTE_D5, NOTE_F3, 16 },
-  { 0, NOTE_F5, NOTE_E2, 16 },
-  { 0, NOTE_F5, NOTE_C3, 16 },
-  { 0, NOTE_F5, NOTE_B2, 16 },
-  { 0, NOTE_D5, NOTE_B2, 16 },
-  { 0, NOTE_B4, NOTE_D3, 16 },
-  { 0, NOTE_D5, NOTE_D3, 16 },
-  { 0, NOTE_G4, NOTE_E3, 16 },
-  { 0, NOTE_B4, NOTE_E3, 16 },
-  { 0, NOTE_D4, NOTE_B3, 16 },
-  { 0, NOTE_F4, NOTE_B3, 16 },
-  { 0, NOTE_E4, NOTE_B3, 16 },
-  { 0, NOTE_E4, NOTE_E3, 16 },
-  { 0, NOTE_G4, NOTE_C3, 16 },
-  { 0, NOTE_G4, NOTE_E3, 16 },
-  { 0, NOTE_C5, NOTE_A2, 16 },
-  { 0, NOTE_C5, NOTE_C3, 16 },
-  { 0, NOTE_E5, NOTE_G2, 16 },
-  { 0, NOTE_E5, NOTE_B2, 16 },
-  { 0, NOTE_E5, NOTE_A2, 16 },
-  { 0, NOTE_C5, NOTE_A2, 16 },
-  { 0, NOTE_A4, NOTE_C3, 16 },
-  { 0, NOTE_C5, NOTE_C3, 16 },
-  { 0, NOTE_F4, NOTE_D3, 16 },
-  { 0, NOTE_F4, NOTE_F3, 16 },
-  { 0, NOTE_D5, NOTE_B2, 16 },
-  { 0, NOTE_D5, NOTE_D3, 16 },
-  { 0, NOTE_D5, NOTE_G2, 16 },
-  { 0, NOTE_B4, NOTE_G2, 16 },
-  { 0, NOTE_G4, NOTE_B2, 16 },
-  { 0, NOTE_B4, NOTE_B2, 16 },
-  { 0, NOTE_E4, NOTE_C3, 16 },
-  { 0, NOTE_E4, NOTE_E3, 16 },
-  { 0, NOTE_C5, NOTE_A2, 16 },
-  { 0, NOTE_C5, NOTE_C3, 16 },
-  { 0, NOTE_C5, NOTE_F2, 16 },
-  { 0, NOTE_A4, NOTE_F2, 16 },
-  { 0, NOTE_F4, NOTE_G2, 16 },
-  { 0, NOTE_A4, NOTE_G2, 16 },
-  { 0, NOTE_D4, NOTE_G2, 16 },
-  { 0, NOTE_D4, NOTE_G3, 16 },
-  { 0, NOTE_B4, NOTE_F3, 16 },
-  { 0, NOTE_B4, NOTE_G3, 16 },
-  { 0, NOTE_C5, NOTE_C3, 16 },
-  { 0, NOTE_C5, NOTE_G3, 16 },
-  { 0,       0, NOTE_C4, 16 },
-  { 0,       0, NOTE_E4, 16 },
-  { 0,       0, NOTE_D4, 16 },
-  { 0,       0, NOTE_G3, 16 },
-  { 0,       0, NOTE_D4, 16 },
-  { 0,       0, NOTE_F4, 16 },
-  { 0,       0, NOTE_E4, 16 },
-  { 0, NOTE_G4, NOTE_E4, 16 },
-  { 0, NOTE_C5, NOTE_C4, 16 },
-  { 0, NOTE_E5, NOTE_C4, 16 },
-  { 0, NOTE_D5, NOTE_B3, 16 },
-  { 0, NOTE_G4, NOTE_B3, 16 },
-  { 0, NOTE_D5, NOTE_G3, 16 },
-  { 0, NOTE_F5, NOTE_G3, 16 },
-  { 0, NOTE_E5, NOTE_C4, 16 },
-  { 0, NOTE_E5, NOTE_G3, 16 },
-  { 0, NOTE_G5, NOTE_C4, 16 },
-  { 0, NOTE_G5, NOTE_E4, 16 },
-  { 0, NOTE_B4, NOTE_D4, 16 },
-  { 0, NOTE_B4, NOTE_G3, 16 },
-  { 0, NOTE_G5, NOTE_D4, 16 },
-  { 0, NOTE_G5, NOTE_F4, 16 },
-  { 0, NOTE_C5, NOTE_E4, 16 },
-  { 0, NOTE_G4, NOTE_E4, 16 },
-  { 0, NOTE_C5, NOTE_C4, 16 },
-  { 0, NOTE_E5, NOTE_C4, 16 },
-  { 0, NOTE_D5,       0, 16 },
-  { 0, NOTE_G4,       0, 16 },
-  { 0, NOTE_D5,       0, 16 },
-  { 0, NOTE_F5,       0, 16 },
-  { 0, NOTE_E5,       0, 16 },
-  { 0, NOTE_E5, NOTE_G4, 16 },
-  { 0, NOTE_C5, NOTE_E4, 16 },
-  { 0, NOTE_C5, NOTE_G4, 16 },
-  { 0, NOTE_G5, NOTE_C4, 16 },
-  { 0, NOTE_G5, NOTE_E4, 16 },
-  { 0, NOTE_E5, NOTE_G3, 16 },
-  { 0, NOTE_E5, NOTE_B3, 16 },
-  { 0, NOTE_C6, NOTE_A3, 16 },
-  { 0, NOTE_A5, NOTE_A3, 16 },
-  { 0, NOTE_E5, NOTE_C4, 16 },
-  { 0, NOTE_A5, NOTE_C4, 16 },
-  { 0, NOTE_C5, NOTE_E4, 16 },
-  { 0, NOTE_E5, NOTE_E4, 16 },
-  { 0, NOTE_A4, NOTE_G4, 16 },
-  { 0, NOTE_C5, NOTE_G4, 16 },
-  { 0, NOTE_D5, NOTE_FS4, 16 },
-  { 0, NOTE_D5, NOTE_A4, 16 },
-  { 0, NOTE_FS5, NOTE_D4, 16 },
-  { 0, NOTE_FS5, NOTE_FS4, 16 },
-  { 0, NOTE_A5, NOTE_A3, 16 },
-  { 0, NOTE_A5, NOTE_D4, 16 },
-  { 0, NOTE_C6, NOTE_FS3, 16 },
-  { 0, NOTE_C6, NOTE_A3, 16 },
-  { 0, NOTE_B5, NOTE_G3, 16 },
-  { 0, NOTE_G5, NOTE_G3, 16 },
-  { 0, NOTE_D5, NOTE_B3, 16 },
-  { 0, NOTE_G5, NOTE_B3, 16 },
-  { 0, NOTE_B4, NOTE_D4, 16 },
-  { 0, NOTE_D5, NOTE_D4, 16 },
-  { 0, NOTE_G4, NOTE_FS4, 16 },
-  { 0, NOTE_B4, NOTE_FS4, 16 },
-  { 0, NOTE_C5, NOTE_E4, 16 },
-  { 0, NOTE_C5, NOTE_G4, 16 },
-  { 0, NOTE_E5, NOTE_C4, 16 },
-  { 0, NOTE_E5, NOTE_E4, 16 },
-  { 0, NOTE_G5, NOTE_G3, 16 },
-  { 0, NOTE_G5, NOTE_C4, 16 },
-  { 0, NOTE_B5, NOTE_E3, 16 },
-  { 0, NOTE_B5, NOTE_G3, 16 },
-  { 0, NOTE_A5, NOTE_FS3, 16 },
-  { 0, NOTE_FS5, NOTE_FS3, 16 },
-  { 0, NOTE_DS5, NOTE_A3, 16 },
-  { 0, NOTE_FS5, NOTE_A3, 16 },
-  { 0, NOTE_B4, NOTE_B3, 16 },
-  { 0, NOTE_DS5, NOTE_B3, 16 },
-  { 0, NOTE_FS4, NOTE_DS4, 16 },
-  { 0, NOTE_A4, NOTE_DS4, 16 },
-  { 0, NOTE_G4,       0, 16 },
-  { 0, NOTE_G4, NOTE_E4, 16 },
-  { 0, NOTE_G5, NOTE_C4, 16 },
-  { 0, NOTE_G5, NOTE_E4, 16 },
-  { 0, NOTE_G5, NOTE_A3, 16 },
-  { 0, NOTE_E5, NOTE_C4, 16 },
-  { 0, NOTE_C5, NOTE_E4, 16 },
-  { 0, NOTE_E5, NOTE_G4, 16 },
-  { 0, NOTE_A4, NOTE_FS4, 16 },
-  { 0, NOTE_A4, NOTE_D4, 16 },
-  { 0, NOTE_FS5, NOTE_B3, 16 },
-  { 0, NOTE_FS5, NOTE_D4, 16 },
-  { 0, NOTE_FS5, NOTE_G3, 16 },
-  { 0, NOTE_D5, NOTE_B3, 16 },
-  { 0, NOTE_B4, NOTE_D4, 16 },
-  { 0, NOTE_D5, NOTE_FS4, 16 },
-  { 0, NOTE_G4, NOTE_E4, 16 },
-  { 0, NOTE_G4, NOTE_C4, 16 },
-  { 0, NOTE_E5, NOTE_A3, 16 },
-  { 0, NOTE_E5, NOTE_C4, 16 },
-  { 0, NOTE_E5, NOTE_FS3, 16 },
-  { 0, NOTE_C5, NOTE_A3, 16 },
-  { 0, NOTE_A4, NOTE_C4, 16 },
-  { 0, NOTE_C5, NOTE_C4, 16 },
-  { 0, NOTE_FS4, NOTE_C4, 16 },
-  { 0, NOTE_G5, NOTE_B3, 16 },
-  { 0, NOTE_FS5, NOTE_C4, 16 },
-  { 0, NOTE_E5, NOTE_A3, 16 },
-  { 0, NOTE_DS5, NOTE_B3, 16 },
-  { 0, NOTE_FS5, NOTE_B3, 16 },
-  { 0, NOTE_B4, NOTE_B2, 16 },
-  { 0, NOTE_DS5, NOTE_B2, 16 },
-  { 0, NOTE_E5, NOTE_E3, 16 },
-  { 0, NOTE_E5, NOTE_E4, 16 },
-  { 0,       0, NOTE_B3, 16 },
-  { 0,       0, NOTE_G3, 16 },
-  { 0,       0, NOTE_E3, 16 },
-  { 0,       0, NOTE_B2, 16 },
-  { 0,       0, NOTE_G2, 16 },
-  { 0,       0, NOTE_B2, 16 },
-  { 0,       0, NOTE_E2, 4 },
-  { 0, 0, 0, 4 },
-  { 0, 0, 0, 2 },
-  { 0, -1, -1, 0 }
-};
+#include "music.h"
 
+volatile int r = 16;
 int t[] = { 0, 0 };
+
 #ifdef USE_EFX
+volatile byte effect = 0;
 int tp[] = { 0, 0 };
 #endif
 
@@ -284,7 +76,6 @@ boolean doSound(int r) {
       PORTB |= B00000010;
     }
   }
-  delayMicroseconds(DELAY_MICROS);
   voice_period = (voice_period + 1 < PERIOD / f) ? voice_period + 1 : 0;
   if (voice_period == 0) {
 #ifdef USE_EFX
@@ -297,23 +88,37 @@ boolean doSound(int r) {
   }
 }
 
+void setup_timer() {
+    TCCR1 = 0;                  //stop the timer
+    TCNT1 = 0;                  //zero the timer
+    GTCCR = _BV(PSR1);          //reset the prescaler
+    OCR1B = 255;                //set the compare value
+    TIMSK = _BV(OCIE1B);  
+    TCCR1 = _BV(CTC1) | _BV(CS10);
+    //sei();
+}
+
+ISR(TIMER1_COMPB_vect) {
+#ifdef USE_EFX
+      doSound(effect, r);
+#else
+      doSound(r);
+#endif
+}
+
 void setup() {
   DDRB |= B00000110;
 #ifdef DIAG
   pinMode(DIAG, OUTPUT);
 #endif
+  setup_timer();
 }
-
 void loop() {
 #ifdef DIAG
   boolean lit = false;
 #endif
-  int i = 0, r = 16;
-#ifdef USE_EFX
-  byte effect;
-#endif
-  byte duration;
-  while(++i) {
+  int i = 0;
+  while(1) {
     r = analogRead(A3) / 4;
     r = r < 16 ? 16 : r;
 #ifdef USE_EFX
@@ -327,17 +132,11 @@ void loop() {
     effect = pgm_read_byte(&score[i].effect);
 #endif
     t[1] = pgm_read_word(&score[i].voice2);
-    duration = pgm_read_byte(&score[i].duration);
 #ifdef DIAG
     digitalWrite(DIAG, lit = !lit);
 #endif
-    for(int j = BEAT/duration; j; j--) {
-#ifdef USE_EFX
-      doSound(effect, r);
-#else
-      doSound(r);
-#endif
-    }
+    _delay_ms(DELAY);
+    i++;
   }
 }
 
