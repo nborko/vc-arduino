@@ -125,6 +125,7 @@ void setup() {
 #endif
     for(int y = 1; y <= DELAY; y += 1) {
       if(!(y % z)) voice = t[!voice] ? !voice : voice;
+      voice = t[voice] ? voice : !voice;
       _delay_ms(1);
 #ifdef USE_EFX
        if(g0) t[0] = t[0] != t0 ? (t[0] < t0 ? min(t0, t[0] + (effect & B00111111)) : max(t0, t[0] - (effect & B00111111))) : t0;
