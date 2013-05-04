@@ -14,22 +14,16 @@
 // Arduino:
 // 1. Get FlexiTimer2 from http://playground.arduino.cc/Main/FlexiTimer2
 // 2. Uncomment the next line
-#include <FlexiTimer2.h>
+//#include <FlexiTimer2.h>
 
 #define USE_EFX
 
-// affects BPM
-// #define DELAY         1.2
-#define DELAY          8
+// Duration of notes, affects BPM
+#define DELAY         200.0
 
-#ifdef USE_EFX
-#define PERIOD        21800
 #define EFX_GLISS     B01000000
 #define EFX_VOICE1    B00000000
 #define EFX_VOICE2    B00100000
-#else
-#define PERIOD        22500
-#endif
 
 // uncomment for LED diagnostic
 //#define DIAG 0
@@ -42,51 +36,27 @@ typedef struct Note {
 
 #include "music.h"
 
-volatile int r = 16;
-int t[] = { 0, 0 };
+// This is tied to the interrupt clock
+// NOTE: Change ONLY to tune!
+const unsigned int PERIOD = 64000;
 
-#ifdef USE_EFX
-volatile byte effect = 0;
-int tp[] = { 0, 0 };
-#endif
+int t[] = { 0, 0 };
+volatile unsigned char voice = 0;
 
 void doSound() {
-  static byte voice = 0;
-  static int voice_period = 0;
-  static int pulse = 0;
-  int f;
+  static unsigned int voice_period = 0;
+  unsigned int f = t[voice];
   
-  if (!t[voice]) {
-    PORTB &= B11111001;
-    voice_period = 0;
-    pulse = 0;
-    voice = !voice;
-  }
-#ifdef USE_EFX
-  boolean g = (effect & EFX_GLISS) && ((effect & (voice << 5)) == voice) && (tp[voice] != t[voice]);
-  f =  g ? tp[voice] : t[voice];
-#else
-  f = t[voice];
-#endif
   if (f) {
     if (voice_period == 0) {
       PORTB &= B11111101;
       PORTB |= B00000100;
-    } else if(voice_period == (PERIOD / 2) / f) {
+    } else if(voice_period == f>>1) {
       PORTB &= B11111011;
       PORTB |= B00000010;
     }
   }
-  voice_period = (voice_period + 1 < PERIOD / f) ? voice_period + 1 : 0;
-  if (voice_period == 0) {
-#ifdef USE_EFX
-    if(g) tp[voice] = tp[voice] != t[voice] ? (tp[voice] < t[voice] ? min(t[voice], tp[voice] + (effect & B00111111)) : max(t[voice], tp[voice] - (effect & B00111111))) : t[voice];
-#endif
-    if (++pulse > f / r) {
-      pulse = 0;
-      voice = !voice;
-    }
-  }
+  voice_period = (voice_period + 1 < f) ? voice_period + 1 : 0;
 }
 
 #ifdef __AVR_ATtiny85__
@@ -116,32 +86,57 @@ void setup() {
   pinMode(DIAG, OUTPUT);
 #endif
   setup_timer();
-}
-void loop() {
 #ifdef DIAG
   boolean lit = false;
 #endif
-  int i = 0;
+  unsigned int i = 0, arp;
+  int t0, t1;
+  int z;
   while(1) {
-    r = analogRead(A3) / 4;
-    r = r < 16 ? 16 : r;
-#ifdef USE_EFX
-    tp[0] = t[0]; tp[1] = t[1];
-#endif
-    t[0] = pgm_read_word(&score[i].voice1);
-    if(t[0] < 0) {
+    arp = analogRead(A3);
+    z = DELAY * (arp / 2048.0);
+    z = z < 4.0 ? 4.0 : z;
+    t0 = pgm_read_word(&score[i].voice1);
+    if(t0 < 0) {
+      t[0] = 0;
+      t[1] = 0;
       break;
     }
-#ifdef USE_EFX
-    effect = pgm_read_byte(&score[i].effect);
-#endif
-    t[1] = pgm_read_word(&score[i].voice2);
+    t1 = pgm_read_word(&score[i].voice2);
+    t0 = t0 ? PERIOD / t0 : 0;
+    t1 = t1 ? PERIOD / t1 : 0;
 #ifdef DIAG
     digitalWrite(DIAG, lit = !lit);
 #endif
-    _delay_ms(DELAY);
+#ifdef USE_EFX
+    byte effect = pgm_read_byte(&score[i].effect);
+    boolean g0 = (effect & EFX_GLISS) && ((effect & (0 << 5)) == 0) && (t[0] != t0),
+            g1 = (effect & EFX_GLISS) && ((effect & (1 << 5)) == 1) && (t[1] != t1);
+    if(!g0) {
+#endif
+      t[0] = t0;
+#ifdef USE_EFX
+    }
+    if(!g1) {
+#endif
+      t[1] = t1;
+#ifdef USE_EFX
+    }
+#endif
+    for(int y = 1; y <= DELAY; y += 1) {
+      if(!(y % z)) voice = t[!voice] ? !voice : voice;
+      _delay_ms(1);
+#ifdef USE_EFX
+       if(g0) t[0] = t[0] != t0 ? (t[0] < t0 ? min(t0, t[0] + (effect & B00111111)) : max(t0, t[0] - (effect & B00111111))) : t0;
+       if(g1) t[1] = t[1] != t1 ? (t[1] < t1 ? min(t1, t[1] + (effect & B00111111)) : max(t1, t[1] - (effect & B00111111))) : t1;
+#endif
+    }
     i++;
   }
+}
+
+void loop() {
+  // idle
 }
 
 /*
