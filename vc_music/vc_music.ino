@@ -19,7 +19,7 @@
 #define USE_EFX
 
 // Duration of notes, affects BPM
-#define DELAY         200.0
+#define DELAY         250.0
 
 #define EFX_GLISS     B01000000
 #define EFX_VOICE1    B00000000
@@ -89,28 +89,35 @@ void setup() {
 #ifdef DIAG
   boolean lit = false;
 #endif
-  unsigned int i = 0, arp;
+  unsigned int p = 0, i = 0, arp;
   int t0, t1;
   int z;
+  Note *n;
   while(1) {
     arp = analogRead(A3);
     z = DELAY * (arp / 2048.0);
     z = z < 4.0 ? 4.0 : z;
-    t0 = pgm_read_word(&score[i].voice1);
-    if(t0 < 0) {
-      t[0] = 0;
-      t[1] = 0;
-      break;
+    n = (Note*)pgm_read_word(&score[p]);
+    if(!n) {
+        t[0] = 0;
+        t[1] = 0;
+        break;
     }
-    t1 = pgm_read_word(&score[i].voice2);
+    t0 = pgm_read_word(&n[i].voice1);
+    if(t0 < 0) {
+      p += 1;
+      i = 0;
+      continue;
+    }
+    t1 = pgm_read_word(&n[i].voice2);
     t0 = t0 ? PERIOD / t0 : 0;
     t1 = t1 ? PERIOD / t1 : 0;
 #ifdef DIAG
     digitalWrite(DIAG, lit = !lit);
 #endif
 #ifdef USE_EFX
-    byte effect = pgm_read_byte(&score[i].effect);
-    boolean g0 = (effect & EFX_GLISS) && ((effect & (0 << 5)) == 0) && (t[0] != t0),
+    byte effect = pgm_read_byte(&n[i].effect);
+    boolean g0 = (effect & EFX_GLISS) && ((effect & (1 << 5)) == 0) && (t[0] != t0),
             g1 = (effect & EFX_GLISS) && ((effect & (1 << 5)) == 1) && (t[1] != t1);
     if(!g0) {
 #endif
@@ -128,8 +135,8 @@ void setup() {
       voice = t[voice] ? voice : !voice;
       _delay_ms(1);
 #ifdef USE_EFX
-       if(g0) t[0] = t[0] != t0 ? (t[0] < t0 ? min(t0, t[0] + (effect & B00111111)) : max(t0, t[0] - (effect & B00111111))) : t0;
-       if(g1) t[1] = t[1] != t1 ? (t[1] < t1 ? min(t1, t[1] + (effect & B00111111)) : max(t1, t[1] - (effect & B00111111))) : t1;
+       if(g0) t[0] = t[0] != t0 ? (t[0] < t0 ? min(t0, t[0] + (effect & B00011111)) : max(t0, t[0] - (effect & B00111111))) : t0;
+       if(g1) t[1] = t[1] != t1 ? (t[1] < t1 ? min(t1, t[1] + (effect & B00011111)) : max(t1, t[1] - (effect & B00111111))) : t1;
 #endif
     }
     i++;

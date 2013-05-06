@@ -1,8 +1,8 @@
 #include "pitches.h"
 
-const Note score[] PROGMEM = {
   // Arp Chords for first part
   // Pattern 1:
+const Note p1a[] PROGMEM = {
   // 1a
   { 0 ,	 NOTE_E4 , NOTE_B4  },
   { 0 ,	 NOTE_E4 , NOTE_B4  },
@@ -12,6 +12,9 @@ const Note score[] PROGMEM = {
   { 0 ,	 NOTE_E4 , NOTE_B4  },
   { 0 ,	 NOTE_E4 , NOTE_B4  },
   { 0 ,	 NOTE_E4 , NOTE_B4  },
+  { 0, -1, -1 }
+};
+const Note p1b[] PROGMEM = {
   // 1b
   { 0 ,	 NOTE_B3 , NOTE_E4  },
   { 0 ,	 NOTE_B3 , NOTE_E4  },
@@ -21,6 +24,9 @@ const Note score[] PROGMEM = {
   { 0 ,	 NOTE_B3 , NOTE_E4  },
   { 0 ,	 NOTE_B3 , NOTE_E4  },
   { 0 ,	 NOTE_B3 , NOTE_E4  },
+  { 0, -1, -1 }
+};
+const Note p1c[] PROGMEM = {
   // 1c
   { 0 ,	 NOTE_G4 , NOTE_D4  },
   { 0 ,	 NOTE_G4 , NOTE_D4  },
@@ -30,6 +36,9 @@ const Note score[] PROGMEM = {
   { 0 ,	 NOTE_G4 , NOTE_D4  },
   { 0 ,	 NOTE_G4 , NOTE_D4  },
   { 0 ,	 NOTE_G4 , NOTE_D4  },
+  { 0, -1, -1 }
+};
+const Note p1d[] PROGMEM = {
   // 1d
   { 0 ,	 NOTE_A4 , NOTE_E4  },
   { 0 ,	 NOTE_A4 , NOTE_E4  },
@@ -39,47 +48,11 @@ const Note score[] PROGMEM = {
   { 0 ,	 NOTE_A4 , NOTE_E4  },
   { 0 ,	 NOTE_A4 , NOTE_E4  },
   { 0 ,	 NOTE_A4 , NOTE_E4  },
-
-  // Pattern 1:
-  // 1a
-  { 0 ,	 NOTE_E4 , NOTE_B4  },
-  { 0 ,	 NOTE_E4 , NOTE_B4  },
-  { 0 ,	 NOTE_E4 , NOTE_B4  },
-  { 0 ,	 NOTE_E4 , NOTE_B4  },
-  { 0 ,	 NOTE_E4 , NOTE_B4  },
-  { 0 ,	 NOTE_E4 , NOTE_B4  },
-  { 0 ,	 NOTE_E4 , NOTE_B4  },
-  { 0 ,	 NOTE_E4 , NOTE_B4  },
-  // 1b
-  { 0 ,	 NOTE_B3 , NOTE_E4  },
-  { 0 ,	 NOTE_B3 , NOTE_E4  },
-  { 0 ,	 NOTE_B3 , NOTE_E4  },
-  { 0 ,	 NOTE_B3 , NOTE_E4  },
-  { 0 ,	 NOTE_B3 , NOTE_E4  },
-  { 0 ,	 NOTE_B3 , NOTE_E4  },
-  { 0 ,	 NOTE_B3 , NOTE_E4  },
-  { 0 ,	 NOTE_B3 , NOTE_E4  },
-  // 1c
-  { 0 ,	 NOTE_G4 , NOTE_D4  },
-  { 0 ,	 NOTE_G4 , NOTE_D4  },
-  { 0 ,	 NOTE_G4 , NOTE_D4  },
-  { 0 ,	 NOTE_G4 , NOTE_D4  },
-  { 0 ,	 NOTE_G4 , NOTE_D4  },
-  { 0 ,	 NOTE_G4 , NOTE_D4  },
-  { 0 ,	 NOTE_G4 , NOTE_D4  },
-  { 0 ,	 NOTE_G4 , NOTE_D4  },
-  // 1d
-  { 0 ,	 NOTE_A4 , NOTE_E4  },
-  { 0 ,	 NOTE_A4 , NOTE_E4  },
-  { 0 ,	 NOTE_A4 , NOTE_E4  },
-  { 0 ,	 NOTE_A4 , NOTE_E4  },
-  { 0 ,	 NOTE_A4 , NOTE_E4  },
-  { 0 ,	 NOTE_A4 , NOTE_E4  },
-  { 0 ,	 NOTE_A4 , NOTE_E4  },
-  { 0 ,	 NOTE_A4 , NOTE_E4  },
-
+  { 0, -1, -1 }
+};
   // Slow Melody with bass
   // Pattern 2
+const Note p2a[] PROGMEM = {
   // 2a
   { 0 ,	 NOTE_B5  , NOTE_E3  },
   { 0 ,	 NOTE_B5  , NOTE_E3  },
@@ -89,6 +62,9 @@ const Note score[] PROGMEM = {
   { 0 ,	 NOTE_A5  , NOTE_E3  },
   { 0 ,	 NOTE_E5  , NOTE_E3  },
   { 0 ,	 NOTE_D5  , NOTE_E3  },
+  { 0, -1, -1 }
+};
+const Note p2b[] PROGMEM = {
   // 2b
   { 0 ,	 NOTE_B5  , NOTE_G3  },
   { 0 ,	 NOTE_B5  , NOTE_G3  },
@@ -98,63 +74,11 @@ const Note score[] PROGMEM = {
   { 0 ,	 NOTE_A5  , NOTE_A3  },
   { 0 ,	 NOTE_E5  , NOTE_A3  },
   { 0 ,	 NOTE_D5  , NOTE_A3  },
-  // 2a
-  { 0 ,	 NOTE_B5  , NOTE_E3  },
-  { 0 ,	 NOTE_B5  , NOTE_E3  },
-  { 0 ,	 NOTE_G5  , NOTE_E3  },
-  { 0 ,	 NOTE_G5  , NOTE_E3  },
-  { 0 ,	 NOTE_A5  , NOTE_E3  },
-  { 0 ,	 NOTE_A5  , NOTE_E3  },
-  { 0 ,	 NOTE_E5  , NOTE_E3  },
-  { 0 ,	 NOTE_D5  , NOTE_E3  },
-  // 2b
-  { 0 ,	 NOTE_B5  , NOTE_G3  },
-  { 0 ,	 NOTE_B5  , NOTE_G3  },
-  { 0 ,	 NOTE_G5  , NOTE_G3  },
-  { 0 ,	 NOTE_G5  , NOTE_G3  },
-  { 0 ,	 NOTE_A5  , NOTE_A3  },
-  { 0 ,	 NOTE_A5  , NOTE_A3  },
-  { 0 ,	 NOTE_E5  , NOTE_A3  },
-  { 0 ,	 NOTE_D5  , NOTE_A3  },
-  // 2a
-  { 0 ,	 NOTE_B5  , NOTE_E3  },
-  { 0 ,	 NOTE_B5  , NOTE_E3  },
-  { 0 ,	 NOTE_G5  , NOTE_E3  },
-  { 0 ,	 NOTE_G5  , NOTE_E3  },
-  { 0 ,	 NOTE_A5  , NOTE_E3  },  
-  { 0 ,	 NOTE_A5  , NOTE_E3  },
-  { 0 ,	 NOTE_E5  , NOTE_E3  },
-  { 0 ,	 NOTE_D5  , NOTE_E3  },
-  // 2b
-  { 0 ,	 NOTE_B5  , NOTE_G3  },
-  { 0 ,	 NOTE_B5  , NOTE_G3  },
-  { 0 ,	 NOTE_G5  , NOTE_G3  },
-  { 0 ,	 NOTE_G5  , NOTE_G3  },
-  { 0 ,	 NOTE_A5  , NOTE_A3  },
-  { 0 ,	 NOTE_A5  , NOTE_A3  },
-  { 0 ,	 NOTE_E5  , NOTE_A3  },
-  { 0 ,	 NOTE_D5  , NOTE_A3  },
-  // 2a
-  { 0 ,	 NOTE_B5  , NOTE_E3  },
-  { 0 ,	 NOTE_B5  , NOTE_E3  },
-  { 0 ,	 NOTE_G5  , NOTE_E3  },
-  { 0 ,	 NOTE_G5  , NOTE_E3  },
-  { 0 ,	 NOTE_A5  , NOTE_E3  },
-  { 0 ,	 NOTE_A5  , NOTE_E3  },
-  { 0 ,	 NOTE_E5  , NOTE_E3  },
-  { 0 ,	 NOTE_D5  , NOTE_E3  },
-  // 2b
-  { 0 ,	 NOTE_B5  , NOTE_G3  },
-  { 0 ,	 NOTE_B5  , NOTE_G3  },
-  { 0 ,	 NOTE_G5  , NOTE_G3  },
-  { 0 ,	 NOTE_G5  , NOTE_G3  },
-  { 0 ,	 NOTE_A5  , NOTE_A3  },
-  { 0 ,	 NOTE_A5  , NOTE_A3  },
-  { 0 ,	 NOTE_E5  , NOTE_A3  },
-  { 0 ,	 NOTE_D5  , NOTE_A3  },
-
+  { 0, -1, -1 }
+};
   // Faster Melody with Bass
   // Pattern 3:
+const Note p3a[] PROGMEM = {
   // 3a
   { 0 ,	 NOTE_B5  , NOTE_E3  },
   { 0 ,	 NOTE_B5  , NOTE_E3  },
@@ -164,6 +88,9 @@ const Note score[] PROGMEM = {
   { 0 ,	 NOTE_G5  , NOTE_E3  },
   { 0 ,	 NOTE_D5  , NOTE_E4  },
   { 0 ,	 NOTE_D5  , NOTE_E4  },
+  { 0, -1, -1 }
+};
+const Note p3b[] PROGMEM = {
   // 3b
   { 0 ,	 NOTE_A5  , NOTE_E3  },
   { 0 ,	 NOTE_A5  , NOTE_E3  },
@@ -173,15 +100,9 @@ const Note score[] PROGMEM = {
   { 0 ,	 NOTE_D5  , NOTE_E3  },
   { 0 ,	 NOTE_B4  , NOTE_E3  },
   { 0 ,	 NOTE_D5  , NOTE_E3  },
-  // 3a
-  { 0 ,	 NOTE_B5  , NOTE_E3  },
-  { 0 ,	 NOTE_B5  , NOTE_E3  },
-  { 0 ,	 NOTE_D5  , NOTE_E4  },  
-  { 0 ,	 NOTE_D5  , NOTE_E4  },
-  { 0 ,	 NOTE_G5  , NOTE_E3  },
-  { 0 ,	 NOTE_G5  , NOTE_E3  },
-  { 0 ,	 NOTE_D5  , NOTE_E4  },
-  { 0 ,	 NOTE_D5  , NOTE_E4  },
+  { 0, -1, -1 }
+};
+const Note p3c[] PROGMEM = {
   // 3c
   { 0 ,	 NOTE_A5  , NOTE_E3  },
   { 0 ,	 NOTE_A5  , NOTE_E3  },
@@ -191,47 +112,11 @@ const Note score[] PROGMEM = {
   { 0 ,	 NOTE_D5  , NOTE_E3  },
   { EFX_GLISS | EFX_VOICE1 | 1 ,	 NOTE_G5  , NOTE_E3  },
   { 0 , NOTE_FS5 , NOTE_E3  },
-  
-  // Pattern 3:
-    // 3a
-  { 0 ,	 NOTE_B5  , NOTE_E3  },
-  { 0 ,	 NOTE_B5  , NOTE_E3  },
-  { 0 ,	 NOTE_D5  , NOTE_E4  },  
-  { 0 ,	 NOTE_D5  , NOTE_E4  },
-  { 0 ,	 NOTE_G5  , NOTE_E3  },
-  { 0 ,	 NOTE_G5  , NOTE_E3  },
-  { 0 ,	 NOTE_D5  , NOTE_E4  },
-  { 0 ,	 NOTE_D5  , NOTE_E4  },
-  // 3b
-  { 0 ,	 NOTE_A5  , NOTE_E3  },
-  { 0 ,	 NOTE_A5  , NOTE_E3  },
-  { 0 ,	 NOTE_D5  , NOTE_E4  },
-  { 0 ,	 NOTE_D5  , NOTE_E4  },
-  { 0 ,	 NOTE_E5  , NOTE_E3  },
-  { 0 ,	 NOTE_D5  , NOTE_E3  },
-  { 0 ,	 NOTE_B4  , NOTE_E3  },
-  { 0 ,	 NOTE_D5  , NOTE_E3  },
-  // 3a
-  { 0 ,	 NOTE_B5  , NOTE_E3  },
-  { 0 ,	 NOTE_B5  , NOTE_E3  },
-  { 0 ,	 NOTE_D5  , NOTE_E4  },  
-  { 0 ,	 NOTE_D5  , NOTE_E4  },
-  { 0 ,	 NOTE_G5  , NOTE_E3  },
-  { 0 ,	 NOTE_G5  , NOTE_E3  },
-  { 0 ,	 NOTE_D5  , NOTE_E4  },
-  { 0 ,	 NOTE_D5  , NOTE_E4  },
-  // 3c
-  { 0 ,	 NOTE_A5  , NOTE_E3  },
-  { 0 ,	 NOTE_A5  , NOTE_E3  },
-  { 0 ,	 NOTE_D5  , NOTE_E4  },
-  { 0 ,	 NOTE_D5  , NOTE_E4  },
-  { 0 ,	 NOTE_E5  , NOTE_E3  },
-  { 0 ,	 NOTE_D5  , NOTE_E3  },
-  { EFX_GLISS | EFX_VOICE1 | 1 ,	 NOTE_G5  , NOTE_E3  },
-  { 0 , NOTE_FS5 , NOTE_E3  },
-  
+  { 0, -1, -1 }
+};
   // Fast Melody Arp Bass
   // Pattern 4:
+const Note p4a[] PROGMEM = {
   // 4a
   { 0 ,	 NOTE_B5  , 0        },
   { 0 ,	 NOTE_B5  , NOTE_B4        },
@@ -241,6 +126,9 @@ const Note score[] PROGMEM = {
   { 0 ,	 NOTE_G5  , NOTE_G4        },
   { 0 ,	 NOTE_D5  , 0        },
   { 0 ,	 NOTE_D5  , NOTE_D4        },
+  { 0, -1, -1 }
+};
+const Note p4b[] PROGMEM = {
   // 4b
   { 0 ,	 NOTE_A5  , 0        },
   { 0 ,	 NOTE_A5  , NOTE_A4        },
@@ -250,15 +138,9 @@ const Note score[] PROGMEM = {
   { 0 ,	 NOTE_D5  , 0        },
   { 0 ,	 NOTE_B4  , 0        },
   { 0 ,	 NOTE_D5  , 0        },
-  // 4a
-  { 0 ,	 NOTE_B5  , 0        },
-  { 0 ,	 NOTE_B5  , NOTE_B4        },
-  { 0 ,	 NOTE_D5  , 0        },  
-  { 0 ,	 NOTE_D5  , NOTE_D4        },  
-  { 0 ,	 NOTE_G5  , 0        },
-  { 0 ,	 NOTE_G5  , NOTE_G4        },
-  { 0 ,	 NOTE_D5  , 0        },
-  { 0 ,	 NOTE_D5  , NOTE_D4        },
+  { 0, -1, -1 }
+};
+const Note p4c[] PROGMEM = {
   // 4c
   { 0 ,	 NOTE_A5  , 0        },
   { 0 ,	 NOTE_A5  , NOTE_A4        },
@@ -268,45 +150,11 @@ const Note score[] PROGMEM = {
   { 0 ,	 NOTE_D5  , 0        },
   { EFX_GLISS | EFX_VOICE1 | 2 , NOTE_FS5 , 0  },
   { 0 ,	 NOTE_FS4 , 0        },
-  // 4a
-  { 0 ,	 NOTE_B5  , 0        },
-  { 0 ,	 NOTE_B5  , NOTE_B4        },
-  { 0 ,	 NOTE_D5  , 0        },  
-  { 0 ,	 NOTE_D5  , NOTE_D4        },  
-  { 0 ,	 NOTE_G5  , 0        },
-  { 0 ,	 NOTE_G5  , NOTE_G4        },
-  { 0 ,	 NOTE_D5  , 0        },
-  { 0 ,	 NOTE_D5  , NOTE_D4        },
-  // 4b
-  { 0 ,	 NOTE_A5  , 0        },
-  { 0 ,	 NOTE_A5  , NOTE_A4        },
-  { 0 ,	 NOTE_D4  , 0        },
-  { 0 ,	 NOTE_D4  , NOTE_D3        },
-  { 0 ,	 NOTE_E5  , 0        },
-  { 0 ,	 NOTE_D5  , 0        },
-  { 0 ,	 NOTE_B4  , 0        },
-  { 0 ,	 NOTE_D5  , 0        },
-  // 4a
-  { 0 ,	 NOTE_B5  , 0        },
-  { 0 ,	 NOTE_B5  , NOTE_B4        },
-  { 0 ,	 NOTE_D5  , 0        },  
-  { 0 ,	 NOTE_D5  , NOTE_D4        },  
-  { 0 ,	 NOTE_G5  , 0        },
-  { 0 ,	 NOTE_G5  , NOTE_G4        },
-  { 0 ,	 NOTE_D5  , 0        },
-  { 0 ,	 NOTE_D5  , NOTE_D4        },
-  // 4c
-  { 0 ,	 NOTE_A5  , 0        },
-  { 0 ,	 NOTE_A5  , NOTE_A4        },
-  { 0 ,	 NOTE_D4  , 0        },
-  { 0 ,	 NOTE_D4  , NOTE_D3        },
-  { 0 ,	 NOTE_E5  , 0        },
-  { 0 ,	 NOTE_D5  , 0        },
-  { EFX_GLISS | EFX_VOICE1 | 2 , NOTE_FS5 , 0  },
-  { 0 ,	 NOTE_FS4 , 0        },
- 
+  { 0, -1, -1 }
+};
   // Fast Melody No Bass
   // Pattern 5:
+const Note p5a[] PROGMEM = {
   // 5a
   { 0 ,	 NOTE_E5  , 0        },
   { 0 ,	 NOTE_E5  , NOTE_E4        },
@@ -316,7 +164,9 @@ const Note score[] PROGMEM = {
   { 0 ,	 NOTE_B5  , 0        },
   { 0 ,	 NOTE_B5  , NOTE_B5        },
   { 0 ,	 NOTE_G4  , 0        },
-  // 5b
+  { 0, -1, -1 }
+};
+const Note p5b[] PROGMEM = {
   { 0 ,	 NOTE_A5  , 0        },
   { 0 ,	 NOTE_A5  , NOTE_A4        },
   { 0 ,	 NOTE_G5  , 0        },
@@ -325,15 +175,9 @@ const Note score[] PROGMEM = {
   { 0 ,	 NOTE_FS5  , NOTE_FS4        },
   { 0 ,	 NOTE_E5 , 0        },
   { EFX_GLISS | EFX_VOICE1 | 2 ,	 NOTE_B5  , 0        },
-  // 5a
-  { 0 ,	 NOTE_E5  , 0        },
-  { 0 ,	 NOTE_E5  , NOTE_E4        },
-  { 0 ,	 NOTE_G5  , 0        },  
-  { 0 ,	 NOTE_G5  , NOTE_G4        },  
-  { 0 ,	 NOTE_D5  , 0        },
-  { 0 ,	 NOTE_B5  , 0        },
-  { 0 ,	 NOTE_B5  , NOTE_B5        },
-  { 0 ,	 NOTE_G4  , 0        },
+  { 0, -1, -1 }
+};
+const Note p5c[] PROGMEM = {
   // 5c
   { 0 ,	 NOTE_B4  , 0        },
   { 0 ,	 NOTE_D5  , 0        },
@@ -343,48 +187,23 @@ const Note score[] PROGMEM = {
   { 0 ,	 NOTE_FS5 , NOTE_B5        },
   { 0 ,  NOTE_E5 , NOTE_B5  },
   { 0 ,	 NOTE_D5, NOTE_B5        },
-  // Pattern 5:
-  // 5a
-  { 0 ,	 NOTE_E5  , 0        },
-  { 0 ,	 NOTE_E5  , NOTE_E4        },
-  { 0 ,	 NOTE_G5  , 0        },  
-  { 0 ,	 NOTE_G5  , NOTE_G4        },  
-  { 0 ,	 NOTE_D5  , 0        },
-  { 0 ,	 NOTE_B5  , 0        },
-  { 0 ,	 NOTE_B5  , NOTE_B5        },
-  { 0 ,	 NOTE_G4  , 0        },
-  // 5b
-  { 0 ,	 NOTE_A5  , 0        },
-  { 0 ,	 NOTE_A5  , NOTE_A4        },
-  { 0 ,	 NOTE_G5  , 0        },
-  { 0 ,	 NOTE_G5  , NOTE_G4        },
-  { 0 ,	 NOTE_FS5  , 0        },
-  { 0 ,	 NOTE_FS5  , NOTE_FS4        },
-  { 0 ,	 NOTE_E5 , 0        },
-  { EFX_GLISS | EFX_VOICE1 | 2 ,	 NOTE_B5  , 0        },
-  // 5a
-  { 0 ,	 NOTE_E5  , 0        },
-  { 0 ,	 NOTE_E5  , NOTE_E4        },
-  { 0 ,	 NOTE_G5  , 0        },  
-  { 0 ,	 NOTE_G5  , NOTE_G4        },  
-  { 0 ,	 NOTE_D5  , 0        },
-  { 0 ,	 NOTE_B5  , 0        },
-  { 0 ,	 NOTE_B5  , NOTE_B5        },
-  { 0 ,	 NOTE_G4  , 0        },
-  // 5c
-  { 0 ,	 NOTE_B4  , 0        },
-  { 0 ,	 NOTE_D5  , 0        },
-  { 0 ,	 NOTE_E5  , 0        },
-  { 0 ,	 NOTE_B4 , 0        },
-  { 0 ,	 NOTE_G4, NOTE_B5        },
-  { 0 ,	 NOTE_FS5 , NOTE_B5        },
-  { 0 ,  NOTE_E5 , NOTE_B5  },
-  { 0 ,	 NOTE_D5, NOTE_B5        },
-
-  // Loop 
+  // Loop (not)
   { 0 ,	 -1       ,-1  }
 };
 
+const Note *score[] PROGMEM = {
+  p1a, p1b, p1c, p1d,
+  p1a, p1b, p1c, p1d,
+  p2a, p2b, p2a, p2b,
+  p2a, p2b, p2a, p2b,
+  p3a, p3b, p3a, p3c,
+  p3a, p3b, p3a, p3c,
+  p4a, p4b, p4a, p4c,
+  p4a, p4b, p4a, p4c,
+  p5a, p5b, p5a, p5c,
+  p5a, p5b, p5a, p5c,
+  0
+};
 
 /*
 const Note score[] PROGMEM = {
