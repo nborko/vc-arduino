@@ -21,7 +21,10 @@
 // Duration of notes, affects BPM
 #define DELAY         250.0
 
+#define EFX_MASK      B11000000
 #define EFX_GLISS     B01000000
+#define EFX_SLIDE_UP  B10000000
+#define EFX_SLIDE_DN  B11000000
 #define EFX_VOICE1    B00000000
 #define EFX_VOICE2    B00100000
 
@@ -117,8 +120,13 @@ void setup() {
 #endif
 #ifdef USE_EFX
     byte effect = pgm_read_byte(&n[i].effect);
-    boolean g0 = (effect & EFX_GLISS) && ((effect & (1 << 5)) == 0) && (t[0] != t0),
-            g1 = (effect & EFX_GLISS) && ((effect & (1 << 5)) == 1) && (t[1] != t1);
+    //boolean g0 = ((effect & EFX_MASK) == EFX_GLISS) && ((effect & (1 << 5)) == 0) && (t[0] != t0),
+    //        g1 = ((effect & EFX_MASK) == EFX_GLISS) && ((effect & (1 << 5)) == 1) && (t[1] != t1);
+    boolean g0 = 0, g1 = 0;
+    if ((effect & EFX_MASK) == EFX_GLISS) {
+      g0 = ((effect & (1 << 5)) == 0) && (t[0] != t0);
+      g1 = ((effect & (1 << 5)) == 1) && (t[1] != t1);
+    }
     if(!g0) {
 #endif
       t[0] = t0;
@@ -128,6 +136,17 @@ void setup() {
 #endif
       t[1] = t1;
 #ifdef USE_EFX
+    }
+    if (!g0 && !g1) {
+      if ((effect & EFX_MASK) == EFX_SLIDE_UP) {
+        g0 = (effect & (1 << 5)) == 0;
+        g1 = !g0;
+        t0 = PERIOD / 20000; // should be beyond human hearing
+      } else if ((effect & EFX_MASK) == EFX_SLIDE_DN) {
+        g0 = (effect & (1 << 5)) == 0;
+        g1 = !g0;
+        t0 = PERIOD / 40;
+      }
     }
 #endif
     for(int y = 1; y <= DELAY; y += 1) {
