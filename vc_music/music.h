@@ -206,7 +206,7 @@ const Note *score[] PROGMEM = {
 };
 
 /*
-const Note score[] PROGMEM = {
+const Note pattern[] PROGMEM = {
   //{ 0, 440, 0, 1 },{ 0, 440, 0, 1 }, {0, -1, -1, 0}, //test tone, 440Hz
   { 0,       0, NOTE_E2 },
   { 0, NOTE_E4, NOTE_E2 },
@@ -426,5 +426,6 @@ const Note score[] PROGMEM = {
   { 0, 0, 0 },
   { 0, -1, -1 }
 };
+const Note *score[] PROGMEM = { pattern, 0 };
 */
 
