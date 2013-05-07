@@ -9,6 +9,7 @@
 // Pins 6,7 -> piezo speaker
 
 #include <avr/pgmspace.h>
+#include <avr/sleep.h>
 #include <util/delay.h>
 
 // Arduino:
@@ -29,7 +30,7 @@
 #define EFX_VOICE2    B00100000
 
 // uncomment for LED diagnostic
-//#define DIAG 0
+//#define DIAG 2
 
 typedef struct Note {
   byte effect;
@@ -52,11 +53,11 @@ void doSound() {
   
   if (f) {
     if (voice_period == 0) {
-      PORTB &= B11111101;
-      PORTB |= B00000100;
-    } else if(voice_period == f>>1) {
-      PORTB &= B11111011;
+      PORTB &= B11111110;
       PORTB |= B00000010;
+    } else if(voice_period == f>>1) {
+      PORTB &= B11111101;
+      PORTB |= B00000001;
     }
   }
   voice_period = (voice_period + 1 < f) ? voice_period + 1 : 0;
@@ -84,7 +85,8 @@ void setup_timer() {
 #endif
 
 void setup() {
-  DDRB |= B00000110;
+  DDRB |= B00001111;
+  PORTB |= B00001000; // set high for pot
 #ifdef DIAG
   pinMode(DIAG, OUTPUT);
 #endif
@@ -92,12 +94,11 @@ void setup() {
 #ifdef DIAG
   boolean lit = false;
 #endif
-  unsigned int p = 0, i = 0, arp;
+  unsigned int p = 0, i = 0, arp, c = 0, z;
   int t0, t1;
-  int z;
   Note *n;
   while(1) {
-    arp = analogRead(A3);
+    arp = analogRead(A2);
     z = DELAY * (arp / 2048.0);
     z = z < 4.0 ? 4.0 : z;
     n = (Note*)pgm_read_word(&score[p]);
@@ -120,12 +121,11 @@ void setup() {
 #endif
 #ifdef USE_EFX
     byte effect = pgm_read_byte(&n[i].effect);
-    //boolean g0 = ((effect & EFX_MASK) == EFX_GLISS) && ((effect & (1 << 5)) == 0) && (t[0] != t0),
-    //        g1 = ((effect & EFX_MASK) == EFX_GLISS) && ((effect & (1 << 5)) == 1) && (t[1] != t1);
-    boolean g0 = 0, g1 = 0;
+    byte fxp = (effect & B00011111);
+    boolean g0 = 0, g1 = 0, fxv = (effect & (1 << 5)) == 1;
     if ((effect & EFX_MASK) == EFX_GLISS) {
-      g0 = ((effect & (1 << 5)) == 0) && (t[0] != t0);
-      g1 = ((effect & (1 << 5)) == 1) && (t[1] != t1);
+      g0 = !fxv && (t[0] != t0);
+      g1 = fxv && (t[1] != t1);
     }
     if(!g0) {
 #endif
@@ -139,27 +139,33 @@ void setup() {
     }
     if (!g0 && !g1) {
       if ((effect & EFX_MASK) == EFX_SLIDE_UP) {
-        g0 = (effect & (1 << 5)) == 0;
-        g1 = !g0;
+        g0 = !fxv;
+        g1 = fxv;
         t0 = PERIOD / 20000; // should be beyond human hearing
       } else if ((effect & EFX_MASK) == EFX_SLIDE_DN) {
-        g0 = (effect & (1 << 5)) == 0;
-        g1 = !g0;
+        g0 = !fxv;
+        g1 = fxv;
         t0 = PERIOD / 40;
       }
     }
 #endif
-    for(int y = 1; y <= DELAY; y += 1) {
-      if(!(y % z)) voice = t[!voice] ? !voice : voice;
+    for(int y = 0; y < DELAY; y += 1) {
+      if(!(c = c < z ? c + 1 : 0)) {
+        voice = t[!voice] ? !voice : voice;
+      }
       voice = t[voice] ? voice : !voice;
       _delay_ms(1);
 #ifdef USE_EFX
-       if(g0) t[0] = t[0] != t0 ? (t[0] < t0 ? min(t0, t[0] + (effect & B00011111)) : max(t0, t[0] - (effect & B00111111))) : t0;
-       if(g1) t[1] = t[1] != t1 ? (t[1] < t1 ? min(t1, t[1] + (effect & B00011111)) : max(t1, t[1] - (effect & B00111111))) : t1;
+       if(g0) t[0] = t[0] != t0 ? (t[0] < t0 ? min(t0, t[0] + fxp) : max(t0, t[0] - fxp)) : t0;
+       if(g1) t[1] = t[1] != t1 ? (t[1] < t1 ? min(t1, t[1] + fxp) : max(t1, t[1] - fxp)) : t1;
 #endif
     }
     i++;
   }
+  // go to sleep to conserve power
+  PORTB = B0;
+  set_sleep_mode(SLEEP_MODE_PWR_DOWN);
+  sleep_mode();
 }
 
 void loop() {
