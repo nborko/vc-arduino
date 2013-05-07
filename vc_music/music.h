@@ -12,10 +12,26 @@ const Note p1a[] PROGMEM = {
   { 0 ,	 NOTE_E4 , NOTE_B4  },
   { 0 ,	 NOTE_E4 , NOTE_B4  },
   { 0 ,	 NOTE_E4 , NOTE_B4  },
+  { 0 ,	 NOTE_E4 , NOTE_B4  },
+  { 0 ,	 NOTE_E4 , NOTE_B4  },
+  { 0 ,	 NOTE_E4 , NOTE_B4  },
+  { 0 ,	 NOTE_E4 , NOTE_B4  },
+  { 0 ,	 NOTE_E4 , NOTE_B4  },
+  { 0 ,	 NOTE_E4 , NOTE_B4  },
+  { 0 ,	 NOTE_E4 , NOTE_B4  },
+  { 0 ,	 NOTE_E4 , NOTE_B4  },
   { 0, -1, -1 }
 };
 const Note p1b[] PROGMEM = {
   // 1b
+  { 0 ,	 NOTE_B3 , NOTE_E4  },
+  { 0 ,	 NOTE_B3 , NOTE_E4  },
+  { 0 ,	 NOTE_B3 , NOTE_E4  },
+  { 0 ,	 NOTE_B3 , NOTE_E4  },
+  { 0 ,	 NOTE_B3 , NOTE_E4  },
+  { 0 ,	 NOTE_B3 , NOTE_E4  },
+  { 0 ,	 NOTE_B3 , NOTE_E4  },
+  { 0 ,	 NOTE_B3 , NOTE_E4  },
   { 0 ,	 NOTE_B3 , NOTE_E4  },
   { 0 ,	 NOTE_B3 , NOTE_E4  },
   { 0 ,	 NOTE_B3 , NOTE_E4  },
@@ -36,10 +52,26 @@ const Note p1c[] PROGMEM = {
   { 0 ,	 NOTE_G4 , NOTE_D4  },
   { 0 ,	 NOTE_G4 , NOTE_D4  },
   { 0 ,	 NOTE_G4 , NOTE_D4  },
+  { 0 ,	 NOTE_G4 , NOTE_D4  },
+  { 0 ,	 NOTE_G4 , NOTE_D4  },
+  { 0 ,	 NOTE_G4 , NOTE_D4  },
+  { 0 ,	 NOTE_G4 , NOTE_D4  },
+  { 0 ,	 NOTE_G4 , NOTE_D4  },
+  { 0 ,	 NOTE_G4 , NOTE_D4  },
+  { 0 ,	 NOTE_G4 , NOTE_D4  },
+  { 0 ,	 NOTE_G4 , NOTE_D4  },
   { 0, -1, -1 }
 };
 const Note p1d[] PROGMEM = {
   // 1d
+  { 0 ,	 NOTE_A4 , NOTE_E4  },
+  { 0 ,	 NOTE_A4 , NOTE_E4  },
+  { 0 ,	 NOTE_A4 , NOTE_E4  },
+  { 0 ,	 NOTE_A4 , NOTE_E4  },
+  { 0 ,	 NOTE_A4 , NOTE_E4  },
+  { 0 ,	 NOTE_A4 , NOTE_E4  },
+  { 0 ,	 NOTE_A4 , NOTE_E4  },
+  { 0 ,	 NOTE_A4 , NOTE_E4  },
   { 0 ,	 NOTE_A4 , NOTE_E4  },
   { 0 ,	 NOTE_A4 , NOTE_E4  },
   { 0 ,	 NOTE_A4 , NOTE_E4  },
@@ -56,11 +88,19 @@ const Note p2a[] PROGMEM = {
   // 2a
   { 0 ,	 NOTE_B5  , NOTE_E3  },
   { 0 ,	 NOTE_B5  , NOTE_E3  },
+  { 0 ,	 NOTE_B5  , NOTE_E3  },
+  { 0 ,	 NOTE_B5  , NOTE_E3  },
+  { 0 ,	 NOTE_G5  , NOTE_E3  },
+  { 0 ,	 NOTE_G5  , NOTE_E3  },
   { 0 ,	 NOTE_G5  , NOTE_E3  },
   { 0 ,	 NOTE_G5  , NOTE_E3  },
   { 0 ,	 NOTE_A5  , NOTE_E3  },  
   { 0 ,	 NOTE_A5  , NOTE_E3  },
+  { 0 ,	 NOTE_A5  , NOTE_E3  },
+  { 0 ,	 NOTE_A5  , NOTE_E3  },
   { 0 ,	 NOTE_E5  , NOTE_E3  },
+  { 0 ,	 NOTE_E5  , NOTE_E3  },
+  { 0 ,	 NOTE_D5  , NOTE_E3  },
   { 0 ,	 NOTE_D5  , NOTE_E3  },
   { 0, -1, -1 }
 };
@@ -68,11 +108,19 @@ const Note p2b[] PROGMEM = {
   // 2b
   { 0 ,	 NOTE_B5  , NOTE_G3  },
   { 0 ,	 NOTE_B5  , NOTE_G3  },
+  { 0 ,	 NOTE_B5  , NOTE_G3  },
+  { 0 ,	 NOTE_B5  , NOTE_G3  },
   { 0 ,	 NOTE_G5  , NOTE_G3  },
   { 0 ,	 NOTE_G5  , NOTE_G3  },
+  { 0 ,	 NOTE_G5  , NOTE_G3  },
+  { 0 ,	 NOTE_G5  , NOTE_G3  },
+  { 0 ,	 NOTE_A5  , NOTE_A3  },
+  { 0 ,	 NOTE_A5  , NOTE_A3  },
   { 0 ,	 NOTE_A5  , NOTE_A3  },
   { 0 ,	 NOTE_A5  , NOTE_A3  },
   { 0 ,	 NOTE_E5  , NOTE_A3  },
+  { 0 ,	 NOTE_E5  , NOTE_A3  },
+  { 0 ,	 NOTE_D5  , NOTE_A3  },
   { 0 ,	 NOTE_D5  , NOTE_A3  },
   { 0, -1, -1 }
 };
@@ -82,57 +130,90 @@ const Note p3a[] PROGMEM = {
   // 3a
   { 0 ,	 NOTE_B5  , NOTE_E3  },
   { 0 ,	 NOTE_B5  , NOTE_E3  },
+  { 0 ,	 NOTE_B5  , NOTE_E3  },
+  { 0 ,	 NOTE_B5  , NOTE_E3  },
+  { 0 ,	 NOTE_D5  , NOTE_E4  },  
   { 0 ,	 NOTE_D5  , NOTE_E4  },  
   { 0 ,	 NOTE_D5  , NOTE_E4  },
+  { 0 ,	 NOTE_D5  , NOTE_E4  },
+  { 0 ,	 NOTE_G5  , NOTE_E3  },
+  { 0 ,	 NOTE_G5  , NOTE_E3  },
   { 0 ,	 NOTE_G5  , NOTE_E3  },
   { 0 ,	 NOTE_G5  , NOTE_E3  },
   { 0 ,	 NOTE_D5  , NOTE_E4  },
   { 0 ,	 NOTE_D5  , NOTE_E4  },
+  { 0 ,	 NOTE_D5  , NOTE_E4  },
+  { 0 ,	 NOTE_D5  , NOTE_E4  },  
   { 0, -1, -1 }
 };
 const Note p3b[] PROGMEM = {
   // 3b
   { 0 ,	 NOTE_A5  , NOTE_E3  },
   { 0 ,	 NOTE_A5  , NOTE_E3  },
+  { 0 ,	 NOTE_A5  , NOTE_E3  },
+  { 0 ,	 NOTE_A5  , NOTE_E3  },
+  { 0 ,	 NOTE_D5  , NOTE_E4  },
+  { 0 ,	 NOTE_D5  , NOTE_E4  },
   { 0 ,	 NOTE_D5  , NOTE_E4  },
   { 0 ,	 NOTE_D5  , NOTE_E4  },
   { 0 ,	 NOTE_E5  , NOTE_E3  },
+  { 0 ,	 NOTE_E5  , NOTE_E3  },
+  { 0 ,	 NOTE_D5  , NOTE_E3  },
   { 0 ,	 NOTE_D5  , NOTE_E3  },
   { 0 ,	 NOTE_B4  , NOTE_E3  },
+  { 0 ,	 NOTE_B4  , NOTE_E3  },
+  { 0 ,	 NOTE_D5  , NOTE_E3  },
   { 0 ,	 NOTE_D5  , NOTE_E3  },
   { 0, -1, -1 }
 };
 const Note p3c[] PROGMEM = {
   // 3c
   { 0 ,	 NOTE_A5  , NOTE_E3  },
+  { 0 ,	 NOTE_A5  , NOTE_E3  },  
   { 0 ,	 NOTE_A5  , NOTE_E3  },
+  { 0 ,	 NOTE_A5  , NOTE_E3  },  
   { 0 ,	 NOTE_D5  , NOTE_E4  },
+  { 0 ,	 NOTE_D5  , NOTE_E4  },  
   { 0 ,	 NOTE_D5  , NOTE_E4  },
+  { 0 ,	 NOTE_D5  , NOTE_E4  },  
   { 0 ,	 NOTE_E5  , NOTE_E3  },
+  { 0 ,	 NOTE_E5  , NOTE_E3  },  
   { 0 ,	 NOTE_D5  , NOTE_E3  },
+  { 0 ,	 NOTE_D5  , NOTE_E3  },  
   { EFX_GLISS | EFX_VOICE1 | 1 ,	 NOTE_G5  , NOTE_E3  },
+  { 0                          ,	 NOTE_G5  , NOTE_E3  },  
   { 0 , NOTE_FS5 , NOTE_E3  },
+  { 0 , NOTE_FS5 , NOTE_E3  },  
   { 0, -1, -1 }
 };
   // Fast Melody Arp Bass
   // Pattern 4:
 const Note p4a[] PROGMEM = {
   // 4a
-  { 0 ,	 NOTE_B5  , 0        },
+  { EFX_SLIDE_DN | EFX_VOICE1 | 10, NOTE_C5, 0 },
+  { 0, 0, 0},
   { 0 ,	 NOTE_B5  , NOTE_B4        },
-  { 0 ,	 NOTE_D5  , 0        },  
+  { 0 ,	 NOTE_B5  , NOTE_B4        },
+  { EFX_SLIDE_DN | EFX_VOICE1 | 10, NOTE_C5, 0 },
+  { 0, 0, 0},
   { 0 ,	 NOTE_D5  , NOTE_D4        },  
-  { 0 ,	 NOTE_G5  , 0        },
+  { 0 ,	 NOTE_D5  , NOTE_D4        },  
+  { EFX_SLIDE_DN | EFX_VOICE1 | 10, NOTE_C5, 0 },
+  { 0, 0, 0},
   { 0 ,	 NOTE_G5  , NOTE_G4        },
-  { 0 ,	 NOTE_D5  , 0        },
+  { 0 ,	 NOTE_G5  , NOTE_G4        },
+  { EFX_SLIDE_DN | EFX_VOICE1 | 10, NOTE_C5, 0 },
+  { 0, 0, 0},
+  { 0 ,	 NOTE_D5  , NOTE_D4        },
   { 0 ,	 NOTE_D5  , NOTE_D4        },
   { 0, -1, -1 }
 };
+/*
 const Note p4b[] PROGMEM = {
   // 4b
-  { 0 ,	 NOTE_A5  , 0        },
+  { EFX_SLIDE_DN | EFX_VOICE1 | 10, NOTE_C5, 0 },
   { 0 ,	 NOTE_A5  , NOTE_A4        },
-  { 0 ,	 NOTE_D4  , 0        },
+  { EFX_SLIDE_DN | EFX_VOICE1 | 10, NOTE_C5, 0 },
   { 0 ,	 NOTE_D4  , NOTE_D3        },
   { 0 ,	 NOTE_E5  , 0        },
   { 0 ,	 NOTE_D5  , 0        },
@@ -140,11 +221,34 @@ const Note p4b[] PROGMEM = {
   { 0 ,	 NOTE_D5  , 0        },
   { 0, -1, -1 }
 };
+*/
+const Note p4b[] PROGMEM = {
+  // 4b
+  { EFX_SLIDE_DN | EFX_VOICE1 | 10, NOTE_C5, 0 },
+  { 0, 0, 0},
+  { 0 ,	 NOTE_A5  , NOTE_A4        },
+  { 0 ,	 NOTE_A5  , NOTE_A4        },
+  { EFX_SLIDE_DN | EFX_VOICE1 | 10, NOTE_C5, 0 },
+  { 0, 0, 0},
+  { 0 ,	 NOTE_D4  , NOTE_D3        },
+  { 0 ,	 NOTE_D4  , NOTE_D3        },  
+  { EFX_SLIDE_DN | EFX_VOICE1 | 10, NOTE_C5, 0 },
+  { 0, 0, 0},
+  { 0 ,	 NOTE_D5  , 0        },
+  { 0 ,	 NOTE_D5  , 0        },  
+  { EFX_SLIDE_DN | EFX_VOICE1 | 10, NOTE_C5, 0 },
+  { 0, 0, 0},
+  { 0 ,	 NOTE_D5  , 0        },
+  { 0 ,	 NOTE_D4  , 0        },  
+  { 0, -1, -1 }
+};
+
+/*
 const Note p4c[] PROGMEM = {
   // 4c
-  { 0 ,	 NOTE_A5  , 0        },
+  { EFX_SLIDE_DN | EFX_VOICE1 | 10, NOTE_C5, 0 },
   { 0 ,	 NOTE_A5  , NOTE_A4        },
-  { 0 ,	 NOTE_D4  , 0        },
+  { EFX_SLIDE_DN | EFX_VOICE1 | 10, NOTE_C5, 0 },
   { 0 ,	 NOTE_D4  , NOTE_D3        },
   { 0 ,	 NOTE_E5  , 0        },
   { 0 ,	 NOTE_D5  , 0        },
@@ -152,41 +256,89 @@ const Note p4c[] PROGMEM = {
   { 0 ,	 NOTE_FS4 , 0        },
   { 0, -1, -1 }
 };
+*/
+
+const Note p4c[] PROGMEM = {
+  // 4c
+  { EFX_SLIDE_DN | EFX_VOICE1 | 10, NOTE_C5, 0 },
+  { 0, 0, 0},
+  { 0 ,	 NOTE_A5  , NOTE_A4        },
+  { 0 ,	 NOTE_A5  , NOTE_A4        },
+  { EFX_SLIDE_DN | EFX_VOICE1 | 10, NOTE_C5, 0 },
+  { 0, 0, 0},
+  { 0 ,	 NOTE_D4  , NOTE_D3        },
+  { 0 ,	 NOTE_D4  , NOTE_D3        },
+  { EFX_SLIDE_DN | EFX_VOICE1 | 10, NOTE_C5, 0 },
+  { 0 ,	 NOTE_E5  , 0        },
+  { 0 ,	 NOTE_D5  , 0        },
+  { 0 ,	 NOTE_D5  , 0        },  
+  { EFX_GLISS | EFX_VOICE1 | 2 , NOTE_FS5 , 0  },
+  { 0 ,  NOTE_FS5 , 0  },
+  { 0 ,	 NOTE_FS4 , 0        },
+  { 0 ,	 NOTE_FS3 , 0        },
+  { 0, -1, -1 }
+};
+
   // Fast Melody No Bass
   // Pattern 5:
 const Note p5a[] PROGMEM = {
   // 5a
-  { 0 ,	 NOTE_E5  , 0        },
+  { EFX_SLIDE_DN | EFX_VOICE1 | 10, NOTE_C5, 0 },
+  { 0, 0, 0},
   { 0 ,	 NOTE_E5  , NOTE_E4        },
-  { 0 ,	 NOTE_G5  , 0        },  
+  { 0 ,	 NOTE_E5  , NOTE_E4        },
+  { EFX_SLIDE_DN | EFX_VOICE1 | 10, NOTE_C5, 0 },
+  { 0, 0, 0},
   { 0 ,	 NOTE_G5  , NOTE_G4        },  
-  { 0 ,	 NOTE_D5  , 0        },
+  { 0 ,	 NOTE_G5  , NOTE_G4        },  
+  { EFX_SLIDE_DN | EFX_VOICE1 | 10, NOTE_C5, 0 },
+  { 0 ,	 NOTE_D4  , 0        },
   { 0 ,	 NOTE_B5  , 0        },
+  { 0 ,	 NOTE_B4  , 0        },
+  { EFX_SLIDE_DN | EFX_VOICE1 | 10, NOTE_C5, 0 },
   { 0 ,	 NOTE_B5  , NOTE_B5        },
   { 0 ,	 NOTE_G4  , 0        },
+  { 0 ,	 NOTE_G3  , 0        },
   { 0, -1, -1 }
 };
+
 const Note p5b[] PROGMEM = {
-  { 0 ,	 NOTE_A5  , 0        },
+  { EFX_SLIDE_DN | EFX_VOICE1 | 10, NOTE_C5, 0 },
+  { 0, 0, 0},
   { 0 ,	 NOTE_A5  , NOTE_A4        },
-  { 0 ,	 NOTE_G5  , 0        },
+  { 0 ,	 NOTE_A5  , NOTE_A4        },
+  { EFX_SLIDE_DN | EFX_VOICE1 | 10, NOTE_C5, 0 },
+  { 0, 0, 0},
   { 0 ,	 NOTE_G5  , NOTE_G4        },
-  { 0 ,	 NOTE_FS5  , 0        },
+  { 0 ,	 NOTE_G5  , NOTE_G4        },
+  { EFX_SLIDE_DN | EFX_VOICE1 | 10, NOTE_C5, 0 },
+  { 0, 0, 0},
   { 0 ,	 NOTE_FS5  , NOTE_FS4        },
-  { 0 ,	 NOTE_E5 , 0        },
-  { EFX_GLISS | EFX_VOICE1 | 2 ,	 NOTE_B5  , 0        },
+  { 0 ,	 NOTE_FS5  , NOTE_FS4        },
+  { EFX_SLIDE_DN | EFX_VOICE1 | 10, NOTE_C5, 0 },
+  { 0 ,	 NOTE_E4 , 0        },
+  { EFX_GLISS | EFX_VOICE1 | 1 ,	 NOTE_B5  , 0        },
+  { EFX_GLISS | EFX_VOICE1 | 2 ,	 NOTE_B4  , 0        },
   { 0, -1, -1 }
 };
 const Note p5c[] PROGMEM = {
   // 5c
   { 0 ,	 NOTE_B4  , 0        },
+  { 0 ,	 NOTE_B3  , 0        },
   { 0 ,	 NOTE_D5  , 0        },
+  { 0 ,	 NOTE_D4  , 0        },
   { 0 ,	 NOTE_E5  , 0        },
+  { 0 ,	 NOTE_E4  , 0        },
   { 0 ,	 NOTE_B4 , 0        },
+  { 0 ,	 NOTE_B3 , 0        },
   { 0 ,	 NOTE_G4, NOTE_B5        },
+  { 0 ,	 NOTE_B4, NOTE_G4        },
   { 0 ,	 NOTE_FS5 , NOTE_B5        },
+  { 0 ,	 NOTE_B4 , NOTE_FS5        },
   { 0 ,  NOTE_E5 , NOTE_B5  },
+  { 0 ,  NOTE_B4 , NOTE_E5  },
   { 0 ,	 NOTE_D5, NOTE_B5        },
+  { 0 ,	 NOTE_B4, NOTE_D5        },
   // Loop (not)
   { 0 ,	 -1       ,-1  }
 };
