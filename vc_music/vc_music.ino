@@ -2,11 +2,11 @@
 // by Nick Borko
 
 // Arduino:
-// A3 -> 10k linear pot
-// D9,D10 -> piezo speaker
+// A2 -> 10k linear pot wiper
+// D8,D9 -> piezo speaker
 // ATtiny85:
-// Pin 2 -> 10k linear pot
-// Pins 6,7 -> piezo speaker
+// Pin 3 -> 10k linear pot wiper
+// Pins 5,6 -> piezo speaker
 
 #include <avr/pgmspace.h>
 #include <avr/sleep.h>
@@ -20,7 +20,7 @@
 #define USE_EFX
 
 // Duration of notes, affects BPM
-#define DELAY         250.0
+#define DELAY         134.0
 
 #define EFX_MASK      B11000000
 #define EFX_GLISS     B01000000
