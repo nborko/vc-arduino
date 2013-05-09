@@ -1,5 +1,5 @@
-// Bach multitone sketch
-// by Nick Borko
+// Chip synth sketch
+// Copyright 2013 by Nick Borko
 
 // Arduino:
 // A2 -> 10k linear pot wiper
@@ -9,8 +9,10 @@
 // Pins 5,6 -> piezo speaker
 
 #include <avr/pgmspace.h>
+#ifdef __AVR_ATtiny85__
 #include <avr/sleep.h>
 #include <util/delay.h>
+#endif
 
 // Arduino:
 // 1. Get FlexiTimer2 from http://playground.arduino.cc/Main/FlexiTimer2
@@ -20,7 +22,7 @@
 #define USE_EFX
 
 // Duration of notes, affects BPM
-#define DELAY         134.0
+#define DELAY         133
 
 #define EFX_MASK      B11000000
 #define EFX_GLISS     B01000000
@@ -38,29 +40,30 @@ typedef struct Note {
   int voice2;
 } Note;
 
+// change to bach.h to get a Bach tune instead
 #include "music.h"
 
 // This is tied to the interrupt clock
 // NOTE: Change ONLY to tune!
 const unsigned int PERIOD = 64000;
 
-int t[] = { 0, 0 };
+int tone_period[] = { 0, 0 };
 volatile unsigned char voice = 0;
 
-void doSound() {
-  static unsigned int voice_period = 0;
-  unsigned int f = t[voice];
+void toneGenerator() {
+  static unsigned int p_count = 0;
+  unsigned int current_period = tone_period[voice];
   
-  if (f) {
-    if (voice_period == 0) {
+  if (current_period) {
+    if (p_count == 0) {
       PORTB &= B11111110;
       PORTB |= B00000010;
-    } else if(voice_period == f>>1) {
+    } else if(p_count == current_period >> 1) {
       PORTB &= B11111101;
       PORTB |= B00000001;
     }
   }
-  voice_period = (voice_period + 1 < f) ? voice_period + 1 : 0;
+  p_count = (p_count + 1 < current_period) ? p_count + 1 : 0;
 }
 
 #ifdef __AVR_ATtiny85__
@@ -75,11 +78,11 @@ void setup_timer() {
 }
 
 ISR(TIMER1_COMPB_vect) {
-  doSound();
+  toneGenerator();
 }
 #else
 void setup_timer() {
-  FlexiTimer2::set(1, 1/(float)PERIOD, doSound);
+  FlexiTimer2::set(1, 1/(float)PERIOD, toneGenerator);
   FlexiTimer2::start();
 }
 #endif
@@ -94,78 +97,94 @@ void setup() {
 #ifdef DIAG
   boolean lit = false;
 #endif
-  unsigned int p = 0, i = 0, arp, c = 0, z;
-  int t0, t1;
-  Note *n;
+  unsigned int pattern = 0,
+               index = 0,
+               arp = 1,
+               arp_count = 0,
+               arp_delay;
+  int tone_period0, tone_period1;
+  Note *note;
   while(1) {
     arp = analogRead(A2);
-    z = DELAY * (arp / 2048.0);
-    z = z < 4.0 ? 4.0 : z;
-    n = (Note*)pgm_read_word(&score[p]);
-    if(!n) {
-        t[0] = 0;
-        t[1] = 0;
+    arp_delay = DELAY * (arp / 2048.0);
+    arp_delay = arp_delay < 4.0 ? 4.0 : arp_delay;
+    note = (Note*)pgm_read_word(&score[pattern]);
+    if(!note) {
+        tone_period[0] = 0;
+        tone_period[1] = 0;
         break;
     }
-    t0 = pgm_read_word(&n[i].voice1);
-    if(t0 < 0) {
-      p += 1;
-      i = 0;
+    tone_period0 = pgm_read_word(&note[index].voice1);
+    if(tone_period0 < 0) {
+      pattern += 1;
+      index = 0;
       continue;
     }
-    t1 = pgm_read_word(&n[i].voice2);
-    t0 = t0 ? PERIOD / t0 : 0;
-    t1 = t1 ? PERIOD / t1 : 0;
+    tone_period1 = pgm_read_word(&note[index].voice2);
+    tone_period0 = tone_period0 ? PERIOD / tone_period0 : 0;
+    tone_period1 = tone_period1 ? PERIOD / tone_period1 : 0;
 #ifdef DIAG
     digitalWrite(DIAG, lit = !lit);
 #endif
 #ifdef USE_EFX
-    byte effect = pgm_read_byte(&n[i].effect);
-    byte fxp = (effect & B00011111);
-    boolean g0 = 0, g1 = 0, fxv = (effect & (1 << 5)) == 1;
+    byte effect = pgm_read_byte(&note[index].effect),
+         effect_param = (effect & B00011111);
+    boolean effect0 = 0,
+            effect1 = 0,
+            effect_voice = (effect & (1 << 5)) == 1;
     if ((effect & EFX_MASK) == EFX_GLISS) {
-      g0 = !fxv && (t[0] != t0);
-      g1 = fxv && (t[1] != t1);
+      effect0 = !effect_voice && (tone_period[0] != tone_period0);
+      effect1 = effect_voice && (tone_period[1] != tone_period1);
     }
-    if(!g0) {
+    if(!effect0) {
 #endif
-      t[0] = t0;
+      tone_period[0] = tone_period0;
 #ifdef USE_EFX
     }
-    if(!g1) {
+    if(!effect1) {
 #endif
-      t[1] = t1;
+      tone_period[1] = tone_period1;
 #ifdef USE_EFX
     }
-    if (!g0 && !g1) {
+    if (!effect0 && !effect1) {
       if ((effect & EFX_MASK) == EFX_SLIDE_UP) {
-        g0 = !fxv;
-        g1 = fxv;
-        t0 = PERIOD / 20000; // should be beyond human hearing
+        effect0 = !effect_voice;
+        effect1 = effect_voice;
+        tone_period0 = PERIOD / 20000; // should be beyond human hearing
       } else if ((effect & EFX_MASK) == EFX_SLIDE_DN) {
-        g0 = !fxv;
-        g1 = fxv;
-        t0 = PERIOD / 40;
+        effect0 = !effect_voice;
+        effect1 = effect_voice;
+        tone_period0 = PERIOD / 40;
       }
     }
 #endif
     for(int y = 0; y < DELAY; y += 1) {
-      if(!(c = c < z ? c + 1 : 0)) {
-        voice = t[!voice] ? !voice : voice;
+      if(!(arp_count = arp_count < arp_delay ? arp_count + 1 : 0)) {
+        voice = tone_period[!voice] ? !voice : voice;
       }
-      voice = t[voice] ? voice : !voice;
-      _delay_ms(1);
+      voice = tone_period[voice] ? voice : !voice;
+#ifdef __AVR_ATtiny85__
+      _delay_ms(0.5);
+#else
+      delayMicroseconds(50);
+#endif
 #ifdef USE_EFX
-       if(g0) t[0] = t[0] != t0 ? (t[0] < t0 ? min(t0, t[0] + fxp) : max(t0, t[0] - fxp)) : t0;
-       if(g1) t[1] = t[1] != t1 ? (t[1] < t1 ? min(t1, t[1] + fxp) : max(t1, t[1] - fxp)) : t1;
+       if(effect0) {
+         tone_period[0] = tone_period[0] != tone_period0 ? (tone_period[0] < tone_period0 ? min(tone_period0, tone_period[0] + effect_param) : max(tone_period0, tone_period[0] - effect_param)) : tone_period0;
+       }
+       if(effect1) {
+         tone_period[1] = tone_period[1] != tone_period1 ? (tone_period[1] < tone_period1 ? min(tone_period1, tone_period[1] + effect_param) : max(tone_period1, tone_period[1] - effect_param)) : tone_period1;
+       }
 #endif
     }
-    i++;
+    index += 1;
   }
   // go to sleep to conserve power
   PORTB = B0;
+#ifdef __AVR_ATtiny85__
   set_sleep_mode(SLEEP_MODE_PWR_DOWN);
   sleep_mode();
+#endif
 }
 
 void loop() {
