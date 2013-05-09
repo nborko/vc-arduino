@@ -30,6 +30,10 @@ body {
   text-align: justify;
 }
 
+.reveal p.center {
+  text-align: center;
+}
+
 .reveal li {
   padding-top: 0.5ex;
 }
