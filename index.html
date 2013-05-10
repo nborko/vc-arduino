@@ -86,11 +86,11 @@
       <section>
         <h2>What is a Microprocessor?</h2>
         <ul>
-          <li>The classical definition of a microprocessor is the combination of the
-            Control Unit, Arithmetical-Logical-Unit and Registers in a single package,
-            a.k.a. CPU</li>
-          <li>Modern microprocessors also integrate input and output ports and on-chip
-            memory (cache, EEPROM, flash, RAM)</li>
+          <li>The classical definition of a microprocessor is the combination
+            of the Control Unit, Arithmetical-Logical-Unit and Registers in
+            a single package, a.k.a. CPU</li>
+          <li>Modern microprocessors also integrate input and output ports
+            and on-chip memory (cache, EEPROM, flash, RAM)</li>
           <li>The Arduino is controlled by a microprocessor called the AVR</li>
         </ul>
       </section>
@@ -104,17 +104,21 @@
       <section>
         <h2>Atmel AVR Architecture</h2>
         <div style="position:fixed;top:600px;left:150px;">&copy; Atmel Corporation</div>
-        <img src="images/avr.png" height="600" title="Atmel AVR Architecture Block Diagram" alt="Diagram of Atmel AVR architecture"><br>
+        <img src="images/avr.png" height="600" title="Atmel AVR Architecture Block Diagram" alt="Diagram of Atmel AVR architecture">
       </section>
 
       <section>
         <h2>What's so great about the Arduino?</h2>
         <p>
-          Arduino isn't just hardware, it's a complete development environment:
+          Arduino isn't just hardware, it's a complete development
+          environment:
           <ul>
-            <li>An open-source electronics prototyping platform based on inexpensive hardware</li>
-            <li>A free, easy to use software integrated development environment (IDE)</li>
-            <li>A familiar programming language based on Processing and C/C++</li>
+            <li>An open-source electronics prototyping platform based on
+              inexpensive hardware</li>
+            <li>A free, easy to use software integrated development
+              environment (IDE)</li>
+            <li>A familiar programming language based on Processing
+              and C/C++</li>
             <li>An active, diverse, inclusive development community</li>
           </ul>
         </p>
@@ -123,13 +127,13 @@
       <section>
         <h2>History of the Arduino</h2>
         <ul>
-          <li>Developed by Massimo Banzi and David Cuartielles at the Interaction Design
-            Institute Ivrea, Italy in 2005
+          <li>Developed by Massimo Banzi and David Cuartielles at the
+            Interaction Design Institute Ivrea, Italy in 2005
             <ul>
-              <li>Designed to be an inexpensive prototyping system for student interactive
-                design projects</li>
-              <li>Built upon the Wiring Platform, by Hernando Barragán, based on the AVR
-                and Processing</li>
+              <li>Designed to be an inexpensive prototyping system for
+                student interactive design projects</li>
+              <li>Built upon the Wiring Platform, by Hernando Barragán,
+                based on the AVR and Processing</li>
             </ul>
           </li>
           <li>See the full length documentary video at
@@ -138,43 +142,134 @@
       </section>
 
       <section>
-        <h2></h2>
+        <h2>Arduino Hardware Overview</h2>
+        <ul>
+          <li>Based on the Atmel Atmega168/328[P], an 8-bit AVR running on
+            5V at 16MHz</li>
+          <li>Programmed with a bootloader to bootstrap loading programs
+            from USB</li>
+          <li>Microprocessor pins are broken out to headers in a standard
+            configuration</li>
+          <li>Additional “shield” boards can be “stacked” on the headers for
+            extended functionality</li>
+        </ul>
       </section>
 
       <section>
-        <h2></h2>
+        <h2>Arduino UNO R3 (~$30)</h2>
+        <img src="images/uno.png" title="Arduino Uno R3" alt="Picture of the Arduino Uno R3 highlighting different components">
       </section>
 
       <section>
-        <h2></h2>
+        <h2>Arduino IDE Overview</h2>
+        <ul>
+          <li>The Arduino IDE (Integrated Development Environment) is all you
+            need to develop programs for the Arduino</li>
+          <li>Written in Java, based on the Wiring IDE</li>
+          <li>Runs on Windows, OSX and Linux</li>
+          <li>Automates the entire AVR development toolchain: editor,
+           compiler/linker (avrgcc), uploader (avrdude), terminal emulator,
+            and more</li>
+        </ul>
       </section>
 
       <section>
-        <h2></h2>
+        <h2>Arduino IDE (1.0.4)</h2>
+        <img src="images/arduino-ide.png" title="The Arduino IDE" alt="Screenshot of the Arduino IDE">
       </section>
 
       <section>
-        <h2></h2>
+        <h2>Arduino Programming Overview</h2>
+        <ul>
+          <li>The Arduino programming language is actually C++, written on
+            top of the Arduino Core</li>
+          <li>A programmer doesn't have to know how to write C++ programs,
+            only the conventions for writing Arduino programs</li>
+          <li>The Arduino IDE takes care of compiling, linking and uploading
+            the program, so you don't have to know how to use any of
+            those tools</li>
+        </ul>
       </section>
 
       <section>
-        <h2></h2>
+        <h2>What is the Arduino Core?</h2>
+        <ul>
+          <li>The Arduino Core provides the main entry function, data types,
+            and high level functions to program the AVR</li>
+          <li>It is a library that abstracts low level microprocessor
+            programming concepts into high level function calls</li>
+          <li>It is based on Processing, a language designed to teach
+            programming in a visual context to non-programmers</li>
+        </ul>
       </section>
 
       <section>
-        <h2></h2>
+        <h2>What is the Arduino Core?</h2>
+        <ul>
+          <li>The Arduino Core assigns a set of standard numbers to the
+            generic I/O pins of the microprocessor for use in programs</li>
+          <li>The Arduino Core is automatically included in and linked to
+            your Arduino programs</li>
+          <li>You can extend the Arduino Core with regular C and C++
+            libraries</li>
+        </ul>
       </section>
 
       <section>
-        <h2></h2>
+        <h2>What is the Arduino Core?</h2>
+        A basic AVR program to blink a LED (in C):
+        <pre style="font-size:16px;"><code>// http://hackaday.com/2010/10/25/avr-programming-02-the-hardware/
+#include &lt;avr/io.h&gt;
+#include &lt;avr/interrupt.h&gt;
+
+int main(void) {
+  //Setup the clock
+  cli();               //Disable global interrupts
+  TCCR1B |= 1&lt;&lt;CS11 | 1&lt;&lt;CS10; //Divide by 64
+  OCR1A = 15624;       //Count 15624 cycles for 1 second interrupt
+  TCCR1B |= 1&lt;&lt;WGM12;  //Put Timer/Counter1 in CTC mode
+  TIMSK1 |= 1&lt;&lt;OCIE1A; //enable timer compare interrupt
+  sei();               //Enable global interrupts
+
+  DDRD |= (1&lt;&lt;0);      //Set PortD Pin0 as an output
+  PORTD |= (1&lt;&lt;0);     //Set PortD Pin0 high to turn on LED
+
+  while(1) { }         //Loop forever, interrupts do the rest
+}
+
+//Interrupt Service Routine
+ISR(TIMER1_COMPA_vect) {
+  PORTD ^= (1&lt;&lt;0);     //Use xor to toggle the LED
+}</code></pre>
       </section>
 
       <section>
-        <h2></h2>
+        <h2>What is the Arduino Core?</h2>
+        A basic Arduino program to blink a LED:
+        <pre><code>void setup() {
+  // initialize the digital pin as an output.
+  // Pin 13 has an LED connected on most Arduino boards:
+  pinMode(13, OUTPUT);
+}
+void loop() {
+  digitalWrite(13, HIGH); // set the LED on
+  delay(1000);            // wait for a second
+  digitalWrite(13, LOW);  // set the LED off
+  delay(1000);            // wait for a second
+}</code></pre>
       </section>
 
       <section>
-        <h2></h2>
+        <h2>Advantages of the Arduino Core</h2>
+        <ul>
+          <li>You don't have to write boilerplate code usually required for
+            microprocessor programming</li>
+          <li>Interaction with microprocessor functions is done through
+            high level function calls rather than looking up bits to set in
+            registers from a data sheet</li>
+          <li>Code is readable and understandable by humans, even by
+            non-programmers</li>
+        </ul>
       </section>
 
       <section>
