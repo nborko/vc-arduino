@@ -3,6 +3,9 @@ Victim Cache Arduino Workshop
 
 This is the code repository for the 10BitWorks Victim Cache Arduino Workshop.
 
+The presentation source is available in the gh-pages branch, or viewable
+at http://nborko.github.io/vc-arduino/.
+
 The code for the music synth is in vc_music.  It can be run on a standard
 Adruino by following the instructions in the comments.
 
