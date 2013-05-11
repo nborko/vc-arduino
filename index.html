@@ -60,7 +60,8 @@
               <li>Overview of the Arduino IDE</li>
               <li>Overview of Arduino programming</li>
             </ul></li>
-            <li class="fragment fade-in">Hands-on: Building a Chiptune Player</li>
+            <li class="fragment fade-in">From Prototype to Gadget</li>
+            <li class="fragment fade-in">Our Projet: The Chiptune Player</li>
           </ul>
       </section>
 
@@ -273,19 +274,203 @@ void loop() {
       </section>
 
       <section>
-        <h2></h2>
+        <h2>From Prototype to Gadget</h2>
+        <ol>
+          <li class="fragment fade-in">Create a sketch &amp; circuit for the
+            Arduino.</li>
+          <li class="fragment fade-in">Pick a compatible part (AVR) with the
+            correct number of input/output pins and size, voltage, clock, etc.
+            requirements.</li>
+          <li class="fragment fade-in">Modify sketch and input/output
+            hardware to match capabilities of microprocessor.</li>
+          <li class="fragment fade-in">Test, refine, test...
+            and test and test!</li>
+          <li class="fragment fade-in">Design your final board &mdash;
+            pre-printed breadboard, etch your own, board service, or
+            deadbug!</li>
+        </ol>
       </section>
 
       <section>
-        <h2></h2>
+        <h2>From Prototype to Gadget</h2>
+        <h3>Create a sketch &amp; circuit for the Arduino</h3>
+        <ul>
+          <li>Chiptune player started as an idea to create a "fuzz organ"</li>
+          <li>See bach_multitone sketch on github:<br>
+            <a href="https://github.com/nborko/vc-arduino/blob/master/bach_multitone/bach_multitone.ino" target="_blank">https://github.com/nborko/vc-arduino/blob/master/bach_multitone/bach_multitone.ino</a></li>
+        </ul>
       </section>
 
       <section>
-        <h2></h2>
+        <h2>From Prototype to Gadget</h2>
+        <h3>Pick a compatible part (AVR)</h3>
+        <ul>
+          <li>The chiptune player needs 2 output for sound and 1 for arpeggio
+            control</li>
+          <li>Need at least 4k of flash (for program), at least 256 bytes of
+           RAM (main memory)</li>
+          <li>The ATtinyx5 series has 5 input/output pins, can run up to 20MHz</li>
+          <li>We picked the ATtiny85 (8k flash, 512 bytes RAM, internal 8MHz clock)</li>
+        </ul>
       </section>
 
       <section>
-        <h2></h2>
+        <h2>From Prototype to Gadget</h2>
+        <h3>Modify Sketch and Hardare for Microprocessor</h3>
+        <ul>
+          <li>Internal timers work differently, so a custom timer interrupt
+            had to be used</li>
+          <li>Clock is slower (8MHz vs. 16MHz), so tone generation and note
+            timing functions had to be modified</li>
+          <li>Desgn goals vs. compromises:
+            <ul>
+              <li>E.g., using the internal clock minimizes parts, but speed
+                will slightly differ from part to part</li>
+            </ul>
+          </li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>From Prototype to Gadget</h2>
+        <h3>Test, refine, test... (ad nauseam)</h3>
+        <ul>
+          <li>Always test your design on a breadboard &mdash; use real parts!</li>
+          <li>If using SMD parts, use breakout boards.  In the long run it will
+            save you time and $$</li>
+          <li>Don't buy just one set of parts for prototype/testing, have 3-5
+            sets on hand, more if a part is easily lost, broken, burned,
+            bricked...</li>
+          <li>It's OK to go back to the drawing board if things aren't working
+            out</li>
+          <li>Always expect the unexpected!</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>From Prototype to Gadget</h2>
+        <h3>Design Your Final Board</h3>
+        <ul>
+          <li>Keep in mind issues like utility, size, longevity</li>
+          <li>Ugly but functional is better than pretty but disposable</li>
+          <li>Design services are nice and getting cheaper, but pre-printed
+            breadboards are cheap and available</li>
+          <li>Don't be afraid to try something different!</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Our Project: A Chiptune Player</h2>
+        <ul>
+          <li>Plays synthesized 8-bit music</li>
+          <li>Prototyped on a standard Arduino Uno</li>
+          <li>Built to spec using an ATtiny85</li>
+        </ul>
+        <img src="images/project.jpg" title="The Chiptune Player" alt="Picture of the Chiptune Player">
+      </section>
+
+      <section>
+        <h2>Chiptune Player Schematic</h2>
+        <img src="images/schematic.png" title="Chiptune Player Schematic" alt="Chiptune Player Schematic">
+      </section>
+
+      <section>
+        <h2>Chiptune Player Code</h2>
+        <ul>
+          <li>Code can be found on github:<br>
+            <a href="https://github.com/nborko/vc-arduino" target="_blank">https://github.com/nborko/vc-arduino</a>
+          </li>
+          <li>Warning: Code is more AVR than Arduino, but the Arduino code
+            is still being used</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>The Microprocessor</h2>
+        <h3>Atmel ATtiny85 AVR</h3>
+        <img src="images/ATtiny85.jpg" title="The ATtiny85" alt="Picture of the ATtiny85">
+      </section>
+
+      <section>
+        <h2>The Parts</h2>
+        <img src="images/parts.jpg" title="The Parts" alt="Picture of the parts">
+      </section>
+
+      <section>
+        <h2>Soldering Is Easy</h2>
+        <ul>
+          <li>This project requires soldering</li>
+          <li>Don't worry, soldering is easy!</li>
+          <li><a href="http://mightyohm.com/files/soldercomic/FullSolderComic_EN.pdf" target="_blank">http://mightyohm.com/files/soldercomic/FullSolderComic_EN.pdf</a></li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>The Build</h2>
+        Step 1: The Empty (Almost) Board<br><br>
+        <img src="images/empty-board.jpg" title="The Empty Board" alt="Picure of the empty board">
+      </section>
+
+      <section>
+        <h2>The Build</h2>
+        Step 2: The Jumpers (Wires)<br><br>
+        <img src="images/board-wiring.jpg" title="Adding Jumpers" alt="Picure of jumper placement on board">
+      </section>
+
+      <section>
+        <h2>The Build</h2>
+        Step 3: The Piezo<br><br>
+        <img src="images/board-piezo.jpg" title="Adding the Piezo" alt="Picure of piezo placement on board">
+      </section>
+
+      <section>
+        <h2>The Build</h2>
+        Step 4: The Push Button<br><br>
+        <img src="images/board-pb.jpg" title="Adding the Push Button" alt="Picure of push button placement on board">
+      </section>
+
+      <section>
+        <h2>The Build</h2>
+        Step 5: The Potentiometer<br><br>
+        <img src="images/board-pot.jpg" title="Adding the Potentiometer" alt="Picure of potentiometer placement on board">
+      </section>
+
+      <section>
+        <h2>The Build</h2>
+        Step 6: The Regulator<br><br>
+        <img src="images/board-reg.jpg" title="Adding the Regulator" alt="Picure of regulator placement on board">
+      </section>
+
+      <section>
+        <h2>The Build</h2>
+        Step 7: The Battery Snap<br><br>
+        <img src="images/board-battery.jpg" title="Adding the Battery Snap" alt="Picure of battery snap placement on board">
+      </section>
+
+      <section>
+        <h2>The Build</h2>
+        <p>Some helpful hints:</p>
+        <ul>
+          <li>Bend wire and part leads out to hold them in place.</li>
+          <li>Solder lower profile parts first, bigger parts last.</li>
+          <li>Use clamps, clothespins or even gravity to help hold the parts
+            close to the board before soldering.</li>
+          <li>Run the battery snap leads from the bottom of the board up
+            through the corner hole and back down on the board again.  This
+            will help relieve tension on the solder joint.</li>
+          <li>Have fun!</li>
+        </ul>
+      </section>
+
+      <section>
+        <p class="center">
+          This presentation is available online at:<br>
+          <a href="http://nborko.github.io/vc-arduino/">http://nborko.github.io/vc-arduino/</a>
+        </p>
+        <p class="center">
+          All source files used for this workshop are available online at:<br>
+          <a href="https://github.com/nborko/vc-arduino">https://github.com/nborko/vc-arduino</a>
+        </p>
       </section>
 
     </div>
