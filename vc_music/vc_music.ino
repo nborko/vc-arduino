@@ -22,7 +22,7 @@
 #define USE_EFX
 
 // Duration of notes, affects BPM
-#define DELAY         133
+#define DELAY         127
 
 #define EFX_MASK      B11000000
 #define EFX_GLISS     B01000000
@@ -45,7 +45,11 @@ typedef struct Note {
 
 // This is tied to the interrupt clock
 // NOTE: Change ONLY to tune!
+#ifdef __AVR_ATtiny85__
+const unsigned int PERIOD = 32000;
+#else
 const unsigned int PERIOD = 64000;
+#endif
 
 int tone_period[] = { 0, 0 };
 volatile unsigned char voice = 0;
@@ -68,6 +72,7 @@ void toneGenerator() {
 
 #ifdef __AVR_ATtiny85__
 void setup_timer() {
+    //OSCCAL = 0x59;              //calibrate oscillator, this is chip specific!!
     TCCR1 = 0;                  //stop the timer
     TCNT1 = 0;                  //zero the timer
     GTCCR = _BV(PSR1);          //reset the prescaler
